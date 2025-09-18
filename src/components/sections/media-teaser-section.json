@@ -1,0 +1,54 @@
+{
+  "collectionName": "components_sections_media_teaser_sections",
+  "info": {
+    "displayName": "MediaTeaserSection"
+  },
+  "options": {},
+  "attributes": {
+    "sectionName": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "component",
+      "component": "shared.theme",
+      "repeatable": false
+    },
+    "headerSection": {
+      "type": "component",
+      "component": "shared.section-header",
+      "repeatable": false
+    },
+    "stat": {
+      "type": "component",
+      "component": "shared.stat",
+      "repeatable": false
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "link": {
+      "type": "component",
+      "component": "shared.link",
+      "repeatable": true
+    },
+    "button": {
+      "type": "component",
+      "component": "shared.button",
+      "repeatable": true
+    },
+    "layout": {
+      "type": "enumeration",
+      "required": true,
+      "default": "content-left",
+      "enum": [
+        "content-left",
+        "content-right"
+      ]
+    }
+  },
+  "config": {}
+}

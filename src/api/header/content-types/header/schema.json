@@ -1,0 +1,45 @@
+{
+  "kind": "singleType",
+  "collectionName": "headers",
+  "info": {
+    "singularName": "header",
+    "pluralName": "headers",
+    "displayName": "Header"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "navItems": {
+      "type": "component",
+      "component": "navigation.top-nav-item",
+      "repeatable": true
+    },
+    "rightCtas": {
+      "type": "component",
+      "component": "navigation.link",
+      "repeatable": true
+    },
+    "AnnouncementBar": {
+      "type": "component",
+      "component": "banner.announcement-bar",
+      "repeatable": false
+    },
+    "lightLogo": {
+      "type": "component",
+      "component": "shared.media-link",
+      "repeatable": false
+    },
+    "darkLogo": {
+      "type": "component",
+      "component": "shared.media-link",
+      "repeatable": false
+    },
+    "TopBar": {
+      "type": "component",
+      "component": "navigation.top-bar",
+      "repeatable": false
+    }
+  }
+}

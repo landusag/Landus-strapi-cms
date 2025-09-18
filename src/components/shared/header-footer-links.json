@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_shared_header_footer_links",
+  "info": {
+    "displayName": "HeaderFooterLinks"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "URL": {
+      "type": "string"
+    },
+    "target": {
+      "type": "enumeration",
+      "enum": [
+        "_blank",
+        "_self",
+        "_parent",
+        "_top"
+      ]
+    },
+    "badge": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

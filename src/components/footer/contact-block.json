@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_footer_contact_blocks",
+  "info": {
+    "displayName": "ContactBlock"
+  },
+  "options": {},
+  "attributes": {
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "address": {
+      "type": "component",
+      "component": "shared.address",
+      "repeatable": true
+    },
+    "link": {
+      "type": "component",
+      "component": "navigation.link",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

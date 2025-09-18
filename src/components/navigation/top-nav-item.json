@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_navigation_top_nav_items",
+  "info": {
+    "displayName": "TopNavItem"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "menuType": {
+      "type": "enumeration",
+      "enum": [
+        "none",
+        "simple",
+        "mega"
+      ]
+    },
+    "simpleLinks": {
+      "type": "component",
+      "component": "navigation.link",
+      "repeatable": true
+    },
+    "groups": {
+      "type": "component",
+      "component": "navigation.nav-group",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

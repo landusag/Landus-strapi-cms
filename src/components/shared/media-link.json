@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_shared_media_links",
+  "info": {
+    "displayName": "MediaLink"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "link": {
+      "type": "component",
+      "component": "shared.link",
+      "repeatable": false
+    },
+    "alt": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

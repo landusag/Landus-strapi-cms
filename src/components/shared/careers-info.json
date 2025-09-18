@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_shared_careers_infos",
+  "info": {
+    "displayName": "careersInfo"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

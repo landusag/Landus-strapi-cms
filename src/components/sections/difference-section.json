@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_difference_sections",
+  "info": {
+    "displayName": "DifferenceSection"
+  },
+  "options": {},
+  "attributes": {
+    "sectionName": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "component",
+      "component": "shared.theme",
+      "repeatable": false
+    },
+    "headerSection": {
+      "type": "component",
+      "component": "shared.section-header",
+      "repeatable": false
+    },
+    "Differences": {
+      "type": "component",
+      "component": "shared.difference",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

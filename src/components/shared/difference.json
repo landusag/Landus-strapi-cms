@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_shared_differences",
+  "info": {
+    "displayName": "Difference"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "icon": {
+      "type": "component",
+      "component": "shared.media-link",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

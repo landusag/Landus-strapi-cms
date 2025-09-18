@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_shared_social_media_icon_links",
+  "info": {
+    "displayName": "SocialMediaIconLinks"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Link": {
+      "type": "component",
+      "component": "shared.link",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

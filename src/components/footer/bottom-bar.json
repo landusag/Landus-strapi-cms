@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_footer_bottom_bars",
+  "info": {
+    "displayName": "BottomBar"
+  },
+  "options": {},
+  "attributes": {
+    "legalLinks": {
+      "type": "component",
+      "component": "shared.link",
+      "repeatable": true
+    },
+    "MediaLink": {
+      "type": "component",
+      "component": "shared.media-link",
+      "repeatable": true
+    },
+    "copyrightText": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_shared_hero_sliders",
+  "info": {
+    "displayName": "HeroSlider"
+  },
+  "options": {},
+  "attributes": {
+    "highlight": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "link": {
+      "type": "component",
+      "component": "shared.link",
+      "repeatable": false
+    },
+    "button": {
+      "type": "component",
+      "component": "shared.button",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

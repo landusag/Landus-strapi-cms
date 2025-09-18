@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_footer_footer_groups",
+  "info": {
+    "displayName": "FooterGroup"
+  },
+  "options": {},
+  "attributes": {
+    "SubHeading": {
+      "type": "string"
+    },
+    "footerLinks": {
+      "type": "component",
+      "component": "navigation.link",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

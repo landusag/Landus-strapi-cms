@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_banner_announcement_bars",
+  "info": {
+    "displayName": "AnnouncementBar"
+  },
+  "options": {},
+  "attributes": {
+    "enabled": {
+      "type": "boolean"
+    },
+    "message": {
+      "type": "text"
+    },
+    "link": {
+      "type": "component",
+      "component": "shared.link",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

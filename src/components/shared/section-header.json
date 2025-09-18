@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_shared_section_headers",
+  "info": {
+    "displayName": "HeaderSection"
+  },
+  "options": {},
+  "attributes": {
+    "eyebrow": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string"
+    },
+    "highlight": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

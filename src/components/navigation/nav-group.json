@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_navigation_nav_groups",
+  "info": {
+    "displayName": "NavGroup"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "showDivider": {
+      "type": "boolean"
+    },
+    "links": {
+      "type": "component",
+      "component": "navigation.link",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
