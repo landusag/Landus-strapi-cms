@@ -556,6 +556,7 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
         'sections.difference-section',
         'sections.content-hub-section',
         'sections.card-section',
+        'sections.career-section',
       ]
     >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;

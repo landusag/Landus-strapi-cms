@@ -37,6 +37,7 @@ export interface FooterBrandBar extends Struct.ComponentSchema {
       true
     >;
     taglineCta: Schema.Attribute.Component<'shared.button', false>;
+    TaglineCTAPreText: Schema.Attribute.String;
   };
 }
 
@@ -59,8 +60,19 @@ export interface FooterFooterColumn extends Struct.ComponentSchema {
     displayName: 'footerColumn';
   };
   attributes: {
+    footerGroup: Schema.Attribute.Component<'footer.footer-group', true>;
     heading: Schema.Attribute.String;
-    links: Schema.Attribute.Component<'navigation.link', true>;
+  };
+}
+
+export interface FooterFooterGroup extends Struct.ComponentSchema {
+  collectionName: 'components_footer_footer_groups';
+  info: {
+    displayName: 'FooterGroup';
+  };
+  attributes: {
+    footerLinks: Schema.Attribute.Component<'navigation.link', true>;
+    SubHeading: Schema.Attribute.String;
   };
 }
 
@@ -147,7 +159,12 @@ export interface SectionsCareerSection extends Struct.ComponentSchema {
     displayName: 'CareerSection';
   };
   attributes: {
+    button: Schema.Attribute.Component<'shared.button', false>;
+    careersCards: Schema.Attribute.Component<'shared.difference', true>;
+    headerSection: Schema.Attribute.Component<'shared.section-header', false>;
+    Image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     sectionName: Schema.Attribute.String;
+    theme: Schema.Attribute.Component<'shared.theme', false>;
   };
 }
 
@@ -276,6 +293,17 @@ export interface SharedCard extends Struct.ComponentSchema {
     link: Schema.Attribute.Component<'shared.link', false>;
     subTitle: Schema.Attribute.String;
     title: Schema.Attribute.String;
+  };
+}
+
+export interface SharedCareersInfo extends Struct.ComponentSchema {
+  collectionName: 'components_shared_careers_infos';
+  info: {
+    displayName: 'careersInfo';
+  };
+  attributes: {
+    description: Schema.Attribute.String;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -423,6 +451,7 @@ declare module '@strapi/strapi' {
       'footer.brand-bar': FooterBrandBar;
       'footer.contact-block': FooterContactBlock;
       'footer.footer-column': FooterFooterColumn;
+      'footer.footer-group': FooterFooterGroup;
       'global.footer': GlobalFooter;
       'navigation.link': NavigationLink;
       'navigation.nav-group': NavigationNavGroup;
@@ -438,6 +467,7 @@ declare module '@strapi/strapi' {
       'shared.address': SharedAddress;
       'shared.button': SharedButton;
       'shared.card': SharedCard;
+      'shared.careers-info': SharedCareersInfo;
       'shared.difference': SharedDifference;
       'shared.form': SharedForm;
       'shared.header-footer-links': SharedHeaderFooterLinks;

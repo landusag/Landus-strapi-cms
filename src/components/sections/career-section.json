@@ -18,9 +18,9 @@
       "component": "shared.section-header",
       "repeatable": false
     },
-    "careersInfo": {
+    "careersCards": {
       "type": "component",
-      "component": "shared.careers-info",
+      "component": "shared.difference",
       "repeatable": true
     },
     "button": {
