@@ -8,6 +8,9 @@
     "value": {
       "type": "string"
     },
+    "subSuffix": {
+      "type": "string"
+    },
     "suffix": {
       "type": "string"
     },

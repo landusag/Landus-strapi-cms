@@ -428,6 +428,7 @@ export interface SharedStat extends Struct.ComponentSchema {
   attributes: {
     description: Schema.Attribute.Text;
     label: Schema.Attribute.String;
+    subSuffix: Schema.Attribute.String;
     suffix: Schema.Attribute.String;
     value: Schema.Attribute.String;
   };
