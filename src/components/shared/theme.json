@@ -9,7 +9,8 @@
       "type": "enumeration",
       "enum": [
         "light",
-        "dark"
+        "dark",
+        "semi-light"
       ]
     }
   },

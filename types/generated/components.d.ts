@@ -440,7 +440,7 @@ export interface SharedTheme extends Struct.ComponentSchema {
     displayName: 'Theme';
   };
   attributes: {
-    theme: Schema.Attribute.Enumeration<['light', 'dark']>;
+    theme: Schema.Attribute.Enumeration<['light', 'dark', 'semi-light']>;
   };
 }
 
