@@ -21,7 +21,10 @@
     },
     "blocks": {
       "type": "dynamiczone",
-      "components": []
+      "components": [
+        "sections.page-hero-section",
+        "sections.media-teaser-section"
+      ]
     }
   }
 }

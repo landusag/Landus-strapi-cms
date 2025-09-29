@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_bread_crumbs",
+  "info": {
+    "displayName": "breadCrumbs"
+  },
+  "options": {},
+  "attributes": {
+    "breadCrumb": {
+      "type": "string"
+    },
+    "IsClickable": {
+      "type": "boolean"
+    },
+    "URL": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

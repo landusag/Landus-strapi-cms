@@ -223,14 +223,33 @@ export interface SectionsMediaTeaserSection extends Struct.ComponentSchema {
   attributes: {
     button: Schema.Attribute.Component<'shared.button', true>;
     headerSection: Schema.Attribute.Component<'shared.section-header', false>;
-    images: Schema.Attribute.Media<'images', true>;
-    layout: Schema.Attribute.Enumeration<['content-left', 'content-right']> &
+    images: Schema.Attribute.Media<'images' | 'videos', true>;
+    layout: Schema.Attribute.Enumeration<
+      ['content-left', 'content-right', 'content-top', 'content-bottom']
+    > &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'content-left'>;
     link: Schema.Attribute.Component<'shared.link', true>;
+    MediaType: Schema.Attribute.Enumeration<['image', 'video']>;
     sectionName: Schema.Attribute.String;
     stat: Schema.Attribute.Component<'shared.stat', false>;
     theme: Schema.Attribute.Component<'shared.theme', false>;
+  };
+}
+
+export interface SectionsPageHeroSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_page_hero_sections';
+  info: {
+    displayName: 'PageHeroSection';
+  };
+  attributes: {
+    backgroundMedia: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    BackgroundType: Schema.Attribute.Enumeration<['image', 'video']>;
+    breadcrumbs: Schema.Attribute.Component<'shared.bread-crumbs', true>;
+    OverlayColor: Schema.Attribute.String;
+    pageTitle: Schema.Attribute.String;
   };
 }
 
@@ -260,6 +279,18 @@ export interface SharedAddress extends Struct.ComponentSchema {
     line2: Schema.Attribute.String;
     state: Schema.Attribute.String;
     zip: Schema.Attribute.String;
+  };
+}
+
+export interface SharedBreadCrumbs extends Struct.ComponentSchema {
+  collectionName: 'components_shared_bread_crumbs';
+  info: {
+    displayName: 'breadCrumbs';
+  };
+  attributes: {
+    breadCrumb: Schema.Attribute.String;
+    IsClickable: Schema.Attribute.Boolean;
+    URL: Schema.Attribute.String;
   };
 }
 
@@ -464,8 +495,10 @@ declare module '@strapi/strapi' {
       'sections.difference-section': SectionsDifferenceSection;
       'sections.hero-section': SectionsHeroSection;
       'sections.media-teaser-section': SectionsMediaTeaserSection;
+      'sections.page-hero-section': SectionsPageHeroSection;
       'sections.quick-facts-section': SectionsQuickFactsSection;
       'shared.address': SharedAddress;
+      'shared.bread-crumbs': SharedBreadCrumbs;
       'shared.button': SharedButton;
       'shared.card': SharedCard;
       'shared.careers-info': SharedCareersInfo;

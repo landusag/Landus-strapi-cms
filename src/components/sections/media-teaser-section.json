@@ -27,7 +27,8 @@
       "type": "media",
       "multiple": true,
       "allowedTypes": [
-        "images"
+        "images",
+        "videos"
       ]
     },
     "link": {
@@ -46,7 +47,16 @@
       "default": "content-left",
       "enum": [
         "content-left",
-        "content-right"
+        "content-right",
+        "content-top",
+        "content-bottom"
+      ]
+    },
+    "MediaType": {
+      "type": "enumeration",
+      "enum": [
+        "image",
+        "video"
       ]
     }
   },
