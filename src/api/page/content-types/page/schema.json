@@ -24,7 +24,8 @@
       "components": [
         "sections.page-hero-section",
         "sections.media-teaser-section",
-        "sections.timeline-section"
+        "sections.timeline-section",
+        "sections.difference-section"
       ]
     }
   }

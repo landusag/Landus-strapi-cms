@@ -587,6 +587,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.page-hero-section',
         'sections.media-teaser-section',
         'sections.timeline-section',
+        'sections.difference-section',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
