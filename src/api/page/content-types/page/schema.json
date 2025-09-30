@@ -23,7 +23,8 @@
       "type": "dynamiczone",
       "components": [
         "sections.page-hero-section",
-        "sections.media-teaser-section"
+        "sections.media-teaser-section",
+        "sections.timeline-section"
       ]
     }
   }

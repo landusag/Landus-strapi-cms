@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_shared_timeline_items",
+  "info": {
+    "displayName": "TimelineItem"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "text"
+    },
+    "Image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  },
+  "config": {}
+}

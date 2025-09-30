@@ -266,6 +266,22 @@ export interface SectionsQuickFactsSection extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsTimelineSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_timeline_sections';
+  info: {
+    displayName: 'TimelineSection';
+  };
+  attributes: {
+    headerSection: Schema.Attribute.Component<'shared.section-header', false>;
+    layout: Schema.Attribute.Enumeration<
+      ['content-left', 'content-right', 'content-top', 'content-bottom']
+    >;
+    sectionName: Schema.Attribute.String;
+    theme: Schema.Attribute.Component<'shared.theme', false>;
+    timelineItems: Schema.Attribute.Component<'shared.timeline-item', true>;
+  };
+}
+
 export interface SharedAddress extends Struct.ComponentSchema {
   collectionName: 'components_shared_addresses';
   info: {
@@ -474,6 +490,18 @@ export interface SharedTheme extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedTimelineItem extends Struct.ComponentSchema {
+  collectionName: 'components_shared_timeline_items';
+  info: {
+    displayName: 'TimelineItem';
+  };
+  attributes: {
+    Description: Schema.Attribute.Text;
+    Image: Schema.Attribute.Media<'images'>;
+    Title: Schema.Attribute.String;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -496,6 +524,7 @@ declare module '@strapi/strapi' {
       'sections.media-teaser-section': SectionsMediaTeaserSection;
       'sections.page-hero-section': SectionsPageHeroSection;
       'sections.quick-facts-section': SectionsQuickFactsSection;
+      'sections.timeline-section': SectionsTimelineSection;
       'shared.address': SharedAddress;
       'shared.bread-crumbs': SharedBreadCrumbs;
       'shared.button': SharedButton;
@@ -512,6 +541,7 @@ declare module '@strapi/strapi' {
       'shared.social-media-icon-links': SharedSocialMediaIconLinks;
       'shared.stat': SharedStat;
       'shared.theme': SharedTheme;
+      'shared.timeline-item': SharedTimelineItem;
     }
   }
 }

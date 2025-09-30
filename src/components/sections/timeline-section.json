@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_sections_timeline_sections",
+  "info": {
+    "displayName": "TimelineSection"
+  },
+  "options": {},
+  "attributes": {
+    "sectionName": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "component",
+      "component": "shared.theme",
+      "repeatable": false
+    },
+    "headerSection": {
+      "type": "component",
+      "component": "shared.section-header",
+      "repeatable": false
+    },
+    "layout": {
+      "type": "enumeration",
+      "enum": [
+        "content-left",
+        "content-right",
+        "content-top",
+        "content-bottom"
+      ]
+    },
+    "timelineItems": {
+      "type": "component",
+      "component": "shared.timeline-item",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
