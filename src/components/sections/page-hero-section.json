@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_sections_page_hero_sections",
+  "info": {
+    "displayName": "PageHeroSection"
+  },
+  "options": {},
+  "attributes": {
+    "pageTitle": {
+      "type": "string"
+    },
+    "backgroundMedia": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "breadcrumbs": {
+      "type": "component",
+      "component": "shared.bread-crumbs",
+      "repeatable": true
+    },
+    "BackgroundType": {
+      "type": "enumeration",
+      "enum": [
+        "image",
+        "video"
+      ]
+    }
+  },
+  "config": {}
+}
