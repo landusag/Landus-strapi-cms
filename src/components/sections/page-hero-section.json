@@ -23,9 +23,6 @@
       "component": "shared.bread-crumbs",
       "repeatable": true
     },
-    "OverlayColor": {
-      "type": "string"
-    },
     "BackgroundType": {
       "type": "enumeration",
       "enum": [

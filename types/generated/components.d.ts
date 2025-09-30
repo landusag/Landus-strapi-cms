@@ -248,7 +248,6 @@ export interface SectionsPageHeroSection extends Struct.ComponentSchema {
     >;
     BackgroundType: Schema.Attribute.Enumeration<['image', 'video']>;
     breadcrumbs: Schema.Attribute.Component<'shared.bread-crumbs', true>;
-    OverlayColor: Schema.Attribute.String;
     pageTitle: Schema.Attribute.String;
   };
 }
