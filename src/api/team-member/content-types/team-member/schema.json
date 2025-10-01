@@ -34,11 +34,11 @@
       "target": "api::team-category.team-category",
       "inversedBy": "team_members"
     },
-    "bio": {
-      "type": "text"
-    },
     "title": {
       "type": "string"
+    },
+    "bio": {
+      "type": "blocks"
     }
   }
 }

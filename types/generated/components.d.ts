@@ -282,6 +282,19 @@ export interface SectionsTeamSection extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsTestimonialSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_testimonial_sections';
+  info: {
+    displayName: 'TestimonialSection';
+  };
+  attributes: {
+    headerSection: Schema.Attribute.Component<'shared.section-header', false>;
+    sectionName: Schema.Attribute.String;
+    testimonials: Schema.Attribute.Component<'shared.testimonial-item', true>;
+    theme: Schema.Attribute.Component<'shared.theme', true>;
+  };
+}
+
 export interface SectionsTimelineSection extends Struct.ComponentSchema {
   collectionName: 'components_sections_timeline_sections';
   info: {
@@ -496,6 +509,19 @@ export interface SharedStat extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedTestimonialItem extends Struct.ComponentSchema {
+  collectionName: 'components_shared_testimonial_items';
+  info: {
+    displayName: 'TestimonialItem';
+  };
+  attributes: {
+    designation: Schema.Attribute.String;
+    fullName: Schema.Attribute.String;
+    message: Schema.Attribute.Text;
+    photo: Schema.Attribute.Media<'images'>;
+  };
+}
+
 export interface SharedTheme extends Struct.ComponentSchema {
   collectionName: 'components_shared_themes';
   info: {
@@ -541,6 +567,7 @@ declare module '@strapi/strapi' {
       'sections.page-hero-section': SectionsPageHeroSection;
       'sections.quick-facts-section': SectionsQuickFactsSection;
       'sections.team-section': SectionsTeamSection;
+      'sections.testimonial-section': SectionsTestimonialSection;
       'sections.timeline-section': SectionsTimelineSection;
       'shared.address': SharedAddress;
       'shared.bread-crumbs': SharedBreadCrumbs;
@@ -557,6 +584,7 @@ declare module '@strapi/strapi' {
       'shared.seo': SharedSeo;
       'shared.social-media-icon-links': SharedSocialMediaIconLinks;
       'shared.stat': SharedStat;
+      'shared.testimonial-item': SharedTestimonialItem;
       'shared.theme': SharedTheme;
       'shared.timeline-item': SharedTimelineItem;
     }

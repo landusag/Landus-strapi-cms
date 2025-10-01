@@ -27,7 +27,8 @@
         "sections.timeline-section",
         "sections.difference-section",
         "sections.team-section",
-        "sections.content-hub-section"
+        "sections.content-hub-section",
+        "sections.testimonial-section"
       ]
     }
   }

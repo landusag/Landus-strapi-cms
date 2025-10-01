@@ -590,6 +590,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.difference-section',
         'sections.team-section',
         'sections.content-hub-section',
+        'sections.testimonial-section',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -651,7 +652,7 @@ export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    bio: Schema.Attribute.Text;
+    bio: Schema.Attribute.Blocks;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
