@@ -25,7 +25,8 @@
         "sections.page-hero-section",
         "sections.media-teaser-section",
         "sections.timeline-section",
-        "sections.difference-section"
+        "sections.difference-section",
+        "sections.team-section"
       ]
     }
   }
