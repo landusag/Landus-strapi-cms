@@ -26,7 +26,8 @@
         "sections.media-teaser-section",
         "sections.timeline-section",
         "sections.difference-section",
-        "sections.team-section"
+        "sections.team-section",
+        "sections.content-hub-section"
       ]
     }
   }
