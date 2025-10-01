@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_team_sections",
+  "info": {
+    "displayName": "TeamSection"
+  },
+  "options": {},
+  "attributes": {
+    "sectionName": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "component",
+      "component": "shared.theme",
+      "repeatable": false
+    },
+    "headerSection": {
+      "type": "component",
+      "component": "shared.section-header",
+      "repeatable": false
+    },
+    "team_categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::team-category.team-category"
+    }
+  },
+  "config": {}
+}

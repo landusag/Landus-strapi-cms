@@ -266,6 +266,22 @@ export interface SectionsQuickFactsSection extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsTeamSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_team_sections';
+  info: {
+    displayName: 'TeamSection';
+  };
+  attributes: {
+    headerSection: Schema.Attribute.Component<'shared.section-header', false>;
+    sectionName: Schema.Attribute.String;
+    team_categories: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::team-category.team-category'
+    >;
+    theme: Schema.Attribute.Component<'shared.theme', false>;
+  };
+}
+
 export interface SectionsTimelineSection extends Struct.ComponentSchema {
   collectionName: 'components_sections_timeline_sections';
   info: {
@@ -524,6 +540,7 @@ declare module '@strapi/strapi' {
       'sections.media-teaser-section': SectionsMediaTeaserSection;
       'sections.page-hero-section': SectionsPageHeroSection;
       'sections.quick-facts-section': SectionsQuickFactsSection;
+      'sections.team-section': SectionsTeamSection;
       'sections.timeline-section': SectionsTimelineSection;
       'shared.address': SharedAddress;
       'shared.bread-crumbs': SharedBreadCrumbs;
