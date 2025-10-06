@@ -33,7 +33,7 @@
       "target": "api::category.category",
       "inversedBy": "articles"
     },
-    "publishedDate": {
+    "Date": {
       "type": "date"
     },
     "heading": {
