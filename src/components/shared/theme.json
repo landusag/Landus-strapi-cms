@@ -7,10 +7,11 @@
   "attributes": {
     "theme": {
       "type": "enumeration",
+      "default": "light",
       "enum": [
+        "semi_light",
         "light",
-        "dark",
-        "semi-light"
+        "dark"
       ]
     }
   },
