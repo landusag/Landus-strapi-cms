@@ -28,7 +28,8 @@
         "sections.difference-section",
         "sections.team-section",
         "sections.content-hub-section",
-        "sections.testimonial-section"
+        "sections.testimonial-section",
+        "sections.card-section"
       ]
     }
   }

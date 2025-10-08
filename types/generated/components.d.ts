@@ -463,6 +463,7 @@ export interface SharedSectionHeader extends Struct.ComponentSchema {
     displayName: 'HeaderSection';
   };
   attributes: {
+    content: Schema.Attribute.Blocks;
     description: Schema.Attribute.Text;
     eyebrow: Schema.Attribute.String;
     heading: Schema.Attribute.String;
