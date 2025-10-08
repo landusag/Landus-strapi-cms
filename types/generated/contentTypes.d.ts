@@ -591,6 +591,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.team-section',
         'sections.content-hub-section',
         'sections.testimonial-section',
+        'sections.card-section',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
