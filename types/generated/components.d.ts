@@ -394,6 +394,19 @@ export interface SharedDifference extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedFacts extends Struct.ComponentSchema {
+  collectionName: 'components_shared_facts';
+  info: {
+    displayName: 'facts';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    icon: Schema.Attribute.Media<'images'>;
+    number: Schema.Attribute.BigInteger;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SharedForm extends Struct.ComponentSchema {
   collectionName: 'components_shared_forms';
   info: {
@@ -577,6 +590,7 @@ declare module '@strapi/strapi' {
       'shared.card': SharedCard;
       'shared.careers-info': SharedCareersInfo;
       'shared.difference': SharedDifference;
+      'shared.facts': SharedFacts;
       'shared.form': SharedForm;
       'shared.header-footer-links': SharedHeaderFooterLinks;
       'shared.hero-slider': SharedHeroSlider;
