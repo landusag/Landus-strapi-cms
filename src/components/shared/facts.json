@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_shared_facts",
+  "info": {
+    "displayName": "facts"
+  },
+  "options": {},
+  "attributes": {
+    "number": {
+      "type": "biginteger"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  },
+  "config": {}
+}
