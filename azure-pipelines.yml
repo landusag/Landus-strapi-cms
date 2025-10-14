@@ -47,4 +47,5 @@ steps:
   env:
     GITHUB_PAT: $(GITHUB_PAT)
   condition: ne(variables['Build.Reason'], 'PullRequest')
+  
 
