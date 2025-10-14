@@ -1,0 +1,51 @@
+variables:
+  GITHUB_ORG: 'landusag'
+  GITHUB_REPO: 'Landus-strapi-cms'
+  GITHUB_USER: 'landus-admin'
+
+trigger:
+  branches:
+    include:
+      - develop
+      - main
+
+pr: none
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- checkout: self
+  fetchDepth: 0
+
+- bash: |
+    set -euo pipefail
+
+    BRANCH_NAME="$(Build.SourceBranchName)"   # e.g., develop/main or a feature
+    echo "Detected branch: ${BRANCH_NAME}"
+
+    # Only sync develop/main
+    case "$BRANCH_NAME" in
+      develop|main) echo "Allowed branch, proceeding…";;
+      *)
+        echo "Branch ${BRANCH_NAME} is not in {develop,main}. Skipping sync."; exit 0;;
+    esac
+
+    git config user.name  "Azure DevOps Sync Bot"
+    git config user.email "azure-sync-bot@users.noreply.github.com"
+
+    GH_URL="https://${GITHUB_USER}:${GITHUB_PAT}@github.com/${GITHUB_ORG}/${GITHUB_REPO}.git"
+    git remote add github "$GH_URL" 2>/dev/null || git remote set-url github "$GH_URL"
+
+    echo "Pushing HEAD to github:${BRANCH_NAME}…"
+    # Use HEAD on the left because we’re in detached HEAD in Microsoft-hosted agents
+    git push github +HEAD:refs/heads/${BRANCH_NAME} --force-with-lease
+
+    # Optional: push tags
+    # git push github --tags
+  displayName: "Sync develop/main → GitHub"
+  env:
+    GITHUB_PAT: $(GITHUB_PAT)
+  condition: ne(variables['Build.Reason'], 'PullRequest')
+  
+
