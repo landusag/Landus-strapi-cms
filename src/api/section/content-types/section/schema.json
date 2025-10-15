@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sections",
+  "info": {
+    "singularName": "section",
+    "pluralName": "sections",
+    "displayName": "Section"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "order": {
+      "type": "biginteger"
+    },
+    "categories_pages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::categories-page.categories-page"
+    }
+  }
+}
