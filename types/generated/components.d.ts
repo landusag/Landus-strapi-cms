@@ -222,6 +222,7 @@ export interface SectionsMediaTeaserSection extends Struct.ComponentSchema {
   };
   attributes: {
     button: Schema.Attribute.Component<'shared.button', true>;
+    enableOverlay: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     headerSection: Schema.Attribute.Component<'shared.section-header', false>;
     images: Schema.Attribute.Media<'images' | 'videos', true>;
     layout: Schema.Attribute.Enumeration<
