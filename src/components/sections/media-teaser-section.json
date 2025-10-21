@@ -58,6 +58,10 @@
         "image",
         "video"
       ]
+    },
+    "enableOverlay": {
+      "type": "boolean",
+      "default": false
     }
   },
   "config": {}
