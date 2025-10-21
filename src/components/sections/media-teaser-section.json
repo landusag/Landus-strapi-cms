@@ -62,6 +62,11 @@
     "enableOverlay": {
       "type": "boolean",
       "default": false
+    },
+    "QuickFact": {
+      "type": "component",
+      "component": "shared.quick-fact-item",
+      "repeatable": true
     }
   },
   "config": {}
