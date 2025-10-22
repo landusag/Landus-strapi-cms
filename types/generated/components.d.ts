@@ -222,6 +222,7 @@ export interface SectionsMediaTeaserSection extends Struct.ComponentSchema {
   };
   attributes: {
     button: Schema.Attribute.Component<'shared.button', true>;
+    enableOverlay: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     headerSection: Schema.Attribute.Component<'shared.section-header', false>;
     images: Schema.Attribute.Media<'images' | 'videos', true>;
     layout: Schema.Attribute.Enumeration<
@@ -231,6 +232,7 @@ export interface SectionsMediaTeaserSection extends Struct.ComponentSchema {
       Schema.Attribute.DefaultTo<'content-left'>;
     link: Schema.Attribute.Component<'shared.link', true>;
     MediaType: Schema.Attribute.Enumeration<['image', 'video']>;
+    QuickFact: Schema.Attribute.Component<'shared.quick-fact-item', true>;
     sectionName: Schema.Attribute.String;
     stat: Schema.Attribute.Component<'shared.stat', false>;
     theme: Schema.Attribute.Component<'shared.theme', false>;
@@ -470,6 +472,16 @@ export interface SharedMediaLink extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedQuickFactItem extends Struct.ComponentSchema {
+  collectionName: 'components_shared_quick_fact_items';
+  info: {
+    displayName: 'QuickFactItem';
+  };
+  attributes: {
+    description: Schema.Attribute.String;
+  };
+}
+
 export interface SharedSectionHeader extends Struct.ComponentSchema {
   collectionName: 'components_shared_section_headers';
   info: {
@@ -596,6 +608,7 @@ declare module '@strapi/strapi' {
       'shared.hero-slider': SharedHeroSlider;
       'shared.link': SharedLink;
       'shared.media-link': SharedMediaLink;
+      'shared.quick-fact-item': SharedQuickFactItem;
       'shared.section-header': SharedSectionHeader;
       'shared.seo': SharedSeo;
       'shared.social-media-icon-links': SharedSocialMediaIconLinks;
