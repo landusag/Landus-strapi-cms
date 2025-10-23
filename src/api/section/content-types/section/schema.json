@@ -14,13 +14,6 @@
     "title": {
       "type": "string"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "title"
-    },
-    "order": {
-      "type": "biginteger"
-    },
     "categories_pages": {
       "type": "relation",
       "relation": "oneToMany",

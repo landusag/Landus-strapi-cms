@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_shared_quick_fact_items",
+  "info": {
+    "displayName": "QuickFactItem"
+  },
+  "options": {},
+  "attributes": {
+    "description": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

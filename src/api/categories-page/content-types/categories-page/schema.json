@@ -21,11 +21,11 @@
     "order": {
       "type": "biginteger"
     },
-    "pages": {
+    "page": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::page.page",
-      "mappedBy": "categories_page"
+      "inversedBy": "categories_pages"
     }
   }
 }

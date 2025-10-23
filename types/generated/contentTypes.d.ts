@@ -430,7 +430,7 @@ export interface ApiCategoriesPageCategoriesPage
     > &
       Schema.Attribute.Private;
     order: Schema.Attribute.BigInteger;
-    pages: Schema.Attribute.Relation<'oneToMany', 'api::page.page'>;
+    page: Schema.Attribute.Relation<'manyToMany', 'api::page.page'>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'title'>;
     title: Schema.Attribute.String;
@@ -626,6 +626,10 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.card-section',
       ]
     >;
+    categories_pages: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::categories-page.categories-page'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -665,9 +669,7 @@ export interface ApiSectionSection extends Struct.CollectionTypeSchema {
       'api::section.section'
     > &
       Schema.Attribute.Private;
-    order: Schema.Attribute.BigInteger;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'title'>;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
