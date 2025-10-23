@@ -31,6 +31,12 @@
         "sections.testimonial-section",
         "sections.card-section"
       ]
+    },
+    "categories_pages": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::categories-page.categories-page",
+      "mappedBy": "page"
     }
   }
 }

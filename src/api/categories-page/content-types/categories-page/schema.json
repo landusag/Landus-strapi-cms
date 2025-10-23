@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categories_pages",
+  "info": {
+    "singularName": "categories-page",
+    "pluralName": "categories-pages",
+    "displayName": "CategoriesPage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "order": {
+      "type": "biginteger"
+    },
+    "page": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::page.page",
+      "inversedBy": "categories_pages"
+    }
+  }
+}
