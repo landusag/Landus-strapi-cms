@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_sections_contact_sections",
+  "info": {
+    "displayName": "ContactSection"
+  },
+  "options": {},
+  "attributes": {
+    "sectionName": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "component",
+      "component": "shared.theme",
+      "repeatable": false
+    },
+    "headerSection": {
+      "type": "component",
+      "component": "shared.section-header",
+      "repeatable": false
+    },
+    "info": {
+      "type": "component",
+      "component": "shared.info",
+      "repeatable": false
+    },
+    "contactList": {
+      "type": "component",
+      "component": "shared.contact-detail",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
