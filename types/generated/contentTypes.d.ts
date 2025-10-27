@@ -689,6 +689,10 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.content-hub-section',
         'sections.testimonial-section',
         'sections.card-section',
+        'sections.contact-section',
+        'sections.faq-section',
+        'sections.career-section',
+        'sections.quick-facts-section',
       ]
     >;
     categories_pages: Schema.Attribute.Relation<

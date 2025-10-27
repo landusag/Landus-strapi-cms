@@ -168,6 +168,20 @@ export interface SectionsCareerSection extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsContactSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_contact_sections';
+  info: {
+    displayName: 'ContactSection';
+  };
+  attributes: {
+    contactList: Schema.Attribute.Component<'shared.contact-detail', true>;
+    headerSection: Schema.Attribute.Component<'shared.section-header', false>;
+    info: Schema.Attribute.Component<'shared.info', false>;
+    sectionName: Schema.Attribute.String;
+    theme: Schema.Attribute.Component<'shared.theme', false>;
+  };
+}
+
 export interface SectionsContentHubSection extends Struct.ComponentSchema {
   collectionName: 'components_sections_content_hub_sections';
   info: {
@@ -193,6 +207,19 @@ export interface SectionsDifferenceSection extends Struct.ComponentSchema {
   };
   attributes: {
     Differences: Schema.Attribute.Component<'shared.difference', true>;
+    headerSection: Schema.Attribute.Component<'shared.section-header', false>;
+    sectionName: Schema.Attribute.String;
+    theme: Schema.Attribute.Component<'shared.theme', false>;
+  };
+}
+
+export interface SectionsFaqSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_faq_sections';
+  info: {
+    displayName: 'FAQSection';
+  };
+  attributes: {
+    faqList: Schema.Attribute.Component<'shared.faq-list', true>;
     headerSection: Schema.Attribute.Component<'shared.section-header', false>;
     sectionName: Schema.Attribute.String;
     theme: Schema.Attribute.Component<'shared.theme', false>;
@@ -384,6 +411,18 @@ export interface SharedCareersInfo extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedContactDetail extends Struct.ComponentSchema {
+  collectionName: 'components_shared_contact_details';
+  info: {
+    displayName: 'ContactList';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images'>;
+    name: Schema.Attribute.String;
+    role: Schema.Attribute.String;
+  };
+}
+
 export interface SharedDifference extends Struct.ComponentSchema {
   collectionName: 'components_shared_differences';
   info: {
@@ -406,6 +445,17 @@ export interface SharedFacts extends Struct.ComponentSchema {
     icon: Schema.Attribute.Media<'images'>;
     number: Schema.Attribute.BigInteger;
     title: Schema.Attribute.String;
+  };
+}
+
+export interface SharedFaqList extends Struct.ComponentSchema {
+  collectionName: 'components_shared_faq_list_s';
+  info: {
+    displayName: 'FaqList ';
+  };
+  attributes: {
+    answer: Schema.Attribute.Blocks;
+    question: Schema.Attribute.Text;
   };
 }
 
@@ -443,6 +493,18 @@ export interface SharedHeroSlider extends Struct.ComponentSchema {
     heading: Schema.Attribute.String;
     highlight: Schema.Attribute.String;
     link: Schema.Attribute.Component<'shared.link', false>;
+  };
+}
+
+export interface SharedInfo extends Struct.ComponentSchema {
+  collectionName: 'components_shared_infos';
+  info: {
+    displayName: 'Info';
+  };
+  attributes: {
+    email: Schema.Attribute.Email;
+    infoDescription: Schema.Attribute.Text;
+    phone: Schema.Attribute.String;
   };
 }
 
@@ -587,8 +649,10 @@ declare module '@strapi/strapi' {
       'navigation.top-nav-item': NavigationTopNavItem;
       'sections.card-section': SectionsCardSection;
       'sections.career-section': SectionsCareerSection;
+      'sections.contact-section': SectionsContactSection;
       'sections.content-hub-section': SectionsContentHubSection;
       'sections.difference-section': SectionsDifferenceSection;
+      'sections.faq-section': SectionsFaqSection;
       'sections.hero-section': SectionsHeroSection;
       'sections.media-teaser-section': SectionsMediaTeaserSection;
       'sections.page-hero-section': SectionsPageHeroSection;
@@ -601,11 +665,14 @@ declare module '@strapi/strapi' {
       'shared.button': SharedButton;
       'shared.card': SharedCard;
       'shared.careers-info': SharedCareersInfo;
+      'shared.contact-detail': SharedContactDetail;
       'shared.difference': SharedDifference;
       'shared.facts': SharedFacts;
+      'shared.faq-list': SharedFaqList;
       'shared.form': SharedForm;
       'shared.header-footer-links': SharedHeaderFooterLinks;
       'shared.hero-slider': SharedHeroSlider;
+      'shared.info': SharedInfo;
       'shared.link': SharedLink;
       'shared.media-link': SharedMediaLink;
       'shared.quick-fact-item': SharedQuickFactItem;
