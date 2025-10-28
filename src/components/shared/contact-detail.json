@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_shared_contact_details",
+  "info": {
+    "displayName": "ContactList"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  },
+  "config": {}
+}
