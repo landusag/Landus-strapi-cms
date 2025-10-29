@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_sections_expandable_info_sections",
+  "info": {
+    "displayName": "ExpandableInfoSection"
+  },
+  "options": {},
+  "attributes": {
+    "sectionName": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "component",
+      "component": "shared.theme",
+      "repeatable": false
+    },
+    "headerSection": {
+      "type": "component",
+      "component": "shared.section-header",
+      "repeatable": false
+    },
+    "expandableList": {
+      "type": "component",
+      "component": "shared.expandable-list",
+      "repeatable": true
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  },
+  "config": {}
+}

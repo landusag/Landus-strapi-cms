@@ -213,6 +213,20 @@ export interface SectionsDifferenceSection extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsExpandableInfoSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_expandable_info_sections';
+  info: {
+    displayName: 'ExpandableInfoSection';
+  };
+  attributes: {
+    expandableList: Schema.Attribute.Component<'shared.expandable-list', true>;
+    headerSection: Schema.Attribute.Component<'shared.section-header', false>;
+    images: Schema.Attribute.Media<'images', true>;
+    sectionName: Schema.Attribute.String;
+    theme: Schema.Attribute.Component<'shared.theme', false>;
+  };
+}
+
 export interface SectionsFaqSection extends Struct.ComponentSchema {
   collectionName: 'components_sections_faq_sections';
   info: {
@@ -435,6 +449,17 @@ export interface SharedDifference extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedExpandableList extends Struct.ComponentSchema {
+  collectionName: 'components_shared_expandable_lists';
+  info: {
+    displayName: 'ExpandableList';
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SharedFacts extends Struct.ComponentSchema {
   collectionName: 'components_shared_facts';
   info: {
@@ -652,6 +677,7 @@ declare module '@strapi/strapi' {
       'sections.contact-section': SectionsContactSection;
       'sections.content-hub-section': SectionsContentHubSection;
       'sections.difference-section': SectionsDifferenceSection;
+      'sections.expandable-info-section': SectionsExpandableInfoSection;
       'sections.faq-section': SectionsFaqSection;
       'sections.hero-section': SectionsHeroSection;
       'sections.media-teaser-section': SectionsMediaTeaserSection;
@@ -667,6 +693,7 @@ declare module '@strapi/strapi' {
       'shared.careers-info': SharedCareersInfo;
       'shared.contact-detail': SharedContactDetail;
       'shared.difference': SharedDifference;
+      'shared.expandable-list': SharedExpandableList;
       'shared.facts': SharedFacts;
       'shared.faq-list': SharedFaqList;
       'shared.form': SharedForm;
