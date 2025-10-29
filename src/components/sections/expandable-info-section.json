@@ -29,6 +29,11 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "buttons": {
+      "type": "component",
+      "component": "shared.button",
+      "repeatable": true
     }
   },
   "config": {}
