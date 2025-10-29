@@ -219,6 +219,7 @@ export interface SectionsExpandableInfoSection extends Struct.ComponentSchema {
     displayName: 'ExpandableInfoSection';
   };
   attributes: {
+    buttons: Schema.Attribute.Component<'shared.button', true>;
     expandableList: Schema.Attribute.Component<'shared.expandable-list', true>;
     headerSection: Schema.Attribute.Component<'shared.section-header', false>;
     images: Schema.Attribute.Media<'images', true>;
