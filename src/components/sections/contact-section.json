@@ -21,7 +21,7 @@
     "info": {
       "type": "component",
       "component": "shared.info",
-      "repeatable": false
+      "repeatable": true
     },
     "contactList": {
       "type": "component",
