@@ -206,6 +206,7 @@ export interface SectionsDifferenceSection extends Struct.ComponentSchema {
     displayName: 'DifferenceSection';
   };
   attributes: {
+    buttons: Schema.Attribute.Component<'shared.button', true>;
     Differences: Schema.Attribute.Component<'shared.difference', true>;
     headerSection: Schema.Attribute.Component<'shared.section-header', false>;
     sectionName: Schema.Attribute.String;

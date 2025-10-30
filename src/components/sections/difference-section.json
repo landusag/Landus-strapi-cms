@@ -22,6 +22,11 @@
       "type": "component",
       "component": "shared.difference",
       "repeatable": true
+    },
+    "buttons": {
+      "type": "component",
+      "component": "shared.button",
+      "repeatable": true
     }
   },
   "config": {}
