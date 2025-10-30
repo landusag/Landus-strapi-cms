@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_shared_expandable_lists",
+  "info": {
+    "displayName": "ExpandableList"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "blocks"
+    }
+  },
+  "config": {}
+}

@@ -693,6 +693,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.faq-section',
         'sections.career-section',
         'sections.quick-facts-section',
+        'sections.expandable-info-section',
       ]
     >;
     categories_pages: Schema.Attribute.Relation<

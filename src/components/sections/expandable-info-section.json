@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_sections_difference_sections",
+  "collectionName": "components_sections_expandable_info_sections",
   "info": {
-    "displayName": "DifferenceSection"
+    "displayName": "ExpandableInfoSection"
   },
   "options": {},
   "attributes": {
@@ -18,10 +18,17 @@
       "component": "shared.section-header",
       "repeatable": false
     },
-    "Differences": {
+    "expandableList": {
       "type": "component",
-      "component": "shared.difference",
+      "component": "shared.expandable-list",
       "repeatable": true
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "buttons": {
       "type": "component",

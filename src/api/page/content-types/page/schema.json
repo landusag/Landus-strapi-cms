@@ -33,7 +33,8 @@
         "sections.contact-section",
         "sections.faq-section",
         "sections.career-section",
-        "sections.quick-facts-section"
+        "sections.quick-facts-section",
+        "sections.expandable-info-section"
       ]
     },
     "categories_pages": {
