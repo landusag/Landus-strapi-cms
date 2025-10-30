@@ -67,6 +67,9 @@
       "type": "component",
       "component": "shared.quick-fact-item",
       "repeatable": true
+    },
+    "postButtonText": {
+      "type": "string"
     }
   },
   "config": {}
