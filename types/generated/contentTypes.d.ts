@@ -399,7 +399,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.String;
+    slug: Schema.Attribute.UID<'title'>;
     subHeading: Schema.Attribute.String;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
