@@ -15,6 +15,9 @@
       "type": "component",
       "component": "shared.media-link",
       "repeatable": false
+    },
+    "content": {
+      "type": "blocks"
     }
   },
   "config": {}

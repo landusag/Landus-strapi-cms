@@ -446,6 +446,7 @@ export interface SharedDifference extends Struct.ComponentSchema {
     displayName: 'Difference';
   };
   attributes: {
+    content: Schema.Attribute.Blocks;
     description: Schema.Attribute.Text;
     icon: Schema.Attribute.Component<'shared.media-link', false>;
     title: Schema.Attribute.String;
