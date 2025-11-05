@@ -31,7 +31,7 @@ async function generatePreviewUrl(event) {
   const site = process.env.FRONTEND_URL || "https://devwebsite.landus.ag";
   const previewUrl = `${site}/${route}/${articleAny.slug}`;
 
-  // ✅ STOP infinite loop: Only update if value is different
+  //  STOP infinite loop: Only update if value is different
   if (articleAny.previewUrl === previewUrl) {
     return;
   }

@@ -176,7 +176,7 @@ export interface SectionsContactSection extends Struct.ComponentSchema {
   attributes: {
     contactList: Schema.Attribute.Component<'shared.contact-detail', true>;
     headerSection: Schema.Attribute.Component<'shared.section-header', false>;
-    info: Schema.Attribute.Component<'shared.info', false>;
+    info: Schema.Attribute.Component<'shared.info', true>;
     sectionName: Schema.Attribute.String;
     theme: Schema.Attribute.Component<'shared.theme', false>;
   };
@@ -255,6 +255,20 @@ export interface SectionsHeroSection extends Struct.ComponentSchema {
     sectionName: Schema.Attribute.String;
     videoFile: Schema.Attribute.Media<'videos'>;
     videoUrl: Schema.Attribute.Text;
+  };
+}
+
+export interface SectionsInfoCardsSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_info_cards_sections';
+  info: {
+    displayName: 'InfoCardsSection';
+  };
+  attributes: {
+    buttons: Schema.Attribute.Component<'shared.button', true>;
+    card: Schema.Attribute.Component<'shared.card', true>;
+    headerSection: Schema.Attribute.Component<'shared.section-header', false>;
+    sectionName: Schema.Attribute.String;
+    theme: Schema.Attribute.Component<'shared.theme', false>;
   };
 }
 
@@ -684,6 +698,7 @@ declare module '@strapi/strapi' {
       'sections.expandable-info-section': SectionsExpandableInfoSection;
       'sections.faq-section': SectionsFaqSection;
       'sections.hero-section': SectionsHeroSection;
+      'sections.info-cards-section': SectionsInfoCardsSection;
       'sections.media-teaser-section': SectionsMediaTeaserSection;
       'sections.page-hero-section': SectionsPageHeroSection;
       'sections.quick-facts-section': SectionsQuickFactsSection;
