@@ -42,6 +42,9 @@
     },
     "subHeading": {
       "type": "string"
+    },
+    "previewUrl": {
+      "type": "string"
     }
   }
 }
