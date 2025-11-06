@@ -22,6 +22,14 @@
       "type": "component",
       "component": "shared.testimonial-item",
       "repeatable": true
+    },
+    "testimonialType": {
+      "type": "enumeration",
+      "default": "Individual Testimonial",
+      "enum": [
+        "Individual Testimonial",
+        "Group Testimonial"
+      ]
     }
   },
   "config": {}
