@@ -351,6 +351,10 @@ export interface SectionsTestimonialSection extends Struct.ComponentSchema {
     headerSection: Schema.Attribute.Component<'shared.section-header', false>;
     sectionName: Schema.Attribute.String;
     testimonials: Schema.Attribute.Component<'shared.testimonial-item', true>;
+    testimonialType: Schema.Attribute.Enumeration<
+      ['Individual Testimonial', 'Group Testimonial']
+    > &
+      Schema.Attribute.DefaultTo<'Individual Testimonial'>;
     theme: Schema.Attribute.Component<'shared.theme', true>;
   };
 }
