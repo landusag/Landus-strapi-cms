@@ -556,6 +556,7 @@ export interface ApiHeaderHeader extends Struct.SingleTypeSchema {
       'api::header.header'
     > &
       Schema.Attribute.Private;
+    myAccount: Schema.Attribute.Component<'shared.my-account-section', false>;
     navItems: Schema.Attribute.Component<'navigation.top-nav-item', true>;
     publishedAt: Schema.Attribute.DateTime;
     rightCtas: Schema.Attribute.Component<'navigation.link', true>;
