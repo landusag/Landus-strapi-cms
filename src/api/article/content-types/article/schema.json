@@ -35,7 +35,17 @@
       "inversedBy": "articles"
     },
     "Date": {
-      "type": "date"
+      "type": "date",
+      "conditions": {
+        "visible": {
+          "!=": [
+            {
+              "var": "articleType"
+            },
+            "event"
+          ]
+        }
+      }
     },
     "heading": {
       "type": "string"
@@ -45,6 +55,59 @@
     },
     "previewUrl": {
       "type": "string"
+    },
+    "startDateTime": {
+      "type": "datetime",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "articleType"
+            },
+            "event"
+          ]
+        }
+      },
+      "required": false,
+      "unique": false
+    },
+    "articleType": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "news",
+        "event",
+        "blogPosts",
+        "podcasts"
+      ]
+    },
+    "endDateTime": {
+      "type": "datetime",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "articleType"
+            },
+            "event"
+          ]
+        }
+      }
+    },
+    "link": {
+      "type": "component",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "articleType"
+            },
+            "event"
+          ]
+        }
+      },
+      "component": "shared.link",
+      "repeatable": false
     }
   }
 }

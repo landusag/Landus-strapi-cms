@@ -3,7 +3,8 @@ function getRoute(categorySlug?: string) {
   return {
     events: "event",
     news: "news",
-    blogs: "blog",
+    podcasts: "podcasts",
+    blogs:"posts"
   }[categorySlug ?? ""] || "articles";
 }
 
