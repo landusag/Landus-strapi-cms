@@ -581,6 +581,19 @@ export interface SharedMediaLink extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedMyAccountSection extends Struct.ComponentSchema {
+  collectionName: 'components_shared_my_account_sections';
+  info: {
+    displayName: 'myAccountSection';
+    icon: 'user';
+  };
+  attributes: {
+    ctaButton: Schema.Attribute.Component<'shared.button', false>;
+    ctaLink: Schema.Attribute.Component<'shared.link', false>;
+    sectionLinks: Schema.Attribute.Component<'shared.media-link', true>;
+  };
+}
+
 export interface SharedQuickFactItem extends Struct.ComponentSchema {
   collectionName: 'components_shared_quick_fact_items';
   info: {
@@ -725,6 +738,7 @@ declare module '@strapi/strapi' {
       'shared.info': SharedInfo;
       'shared.link': SharedLink;
       'shared.media-link': SharedMediaLink;
+      'shared.my-account-section': SharedMyAccountSection;
       'shared.quick-fact-item': SharedQuickFactItem;
       'shared.section-header': SharedSectionHeader;
       'shared.seo': SharedSeo;
