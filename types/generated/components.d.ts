@@ -601,6 +601,7 @@ export interface SharedQuickFactItem extends Struct.ComponentSchema {
   };
   attributes: {
     description: Schema.Attribute.String;
+    title: Schema.Attribute.String;
   };
 }
 
