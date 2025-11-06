@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_shared_my_account_sections",
+  "info": {
+    "displayName": "myAccountSection",
+    "icon": "user"
+  },
+  "options": {},
+  "attributes": {
+    "sectionLinks": {
+      "type": "component",
+      "component": "shared.media-link",
+      "repeatable": true
+    },
+    "ctaLink": {
+      "type": "component",
+      "component": "shared.link",
+      "repeatable": false
+    },
+    "ctaButton": {
+      "type": "component",
+      "component": "shared.button",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}
