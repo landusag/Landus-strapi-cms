@@ -40,6 +40,11 @@
       "type": "component",
       "component": "navigation.top-bar",
       "repeatable": false
+    },
+    "myAccount": {
+      "type": "component",
+      "component": "shared.my-account-section",
+      "repeatable": false
     }
   }
 }
