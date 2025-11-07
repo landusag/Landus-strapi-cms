@@ -288,6 +288,7 @@ export interface SectionsMediaTeaserSection extends Struct.ComponentSchema {
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'content-left'>;
     link: Schema.Attribute.Component<'shared.link', true>;
+    logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     MediaType: Schema.Attribute.Enumeration<['image', 'video']>;
     postButtonText: Schema.Attribute.String;
     QuickFact: Schema.Attribute.Component<'shared.quick-fact-item', true>;
