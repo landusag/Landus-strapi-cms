@@ -59,6 +59,19 @@
         "video"
       ]
     },
+    "MediaURL": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "MediaType"
+            },
+            "video"
+          ]
+        }
+      }
+    },
     "enableOverlay": {
       "type": "boolean",
       "default": false
