@@ -335,6 +335,7 @@ export interface SectionsResourceListSection extends Struct.ComponentSchema {
   };
   attributes: {
     headerSection: Schema.Attribute.Component<'shared.section-header', false>;
+    resources: Schema.Attribute.Component<'shared.resource-item', true>;
     sectionName: Schema.Attribute.String;
     theme: Schema.Attribute.Component<'shared.theme', false>;
   };

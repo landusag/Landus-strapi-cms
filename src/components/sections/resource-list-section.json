@@ -17,6 +17,11 @@
       "type": "component",
       "component": "shared.section-header",
       "repeatable": false
+    },
+    "resources": {
+      "type": "component",
+      "component": "shared.resource-item",
+      "repeatable": true
     }
   },
   "config": {}
