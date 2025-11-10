@@ -705,6 +705,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.expandable-info-section',
         'sections.info-cards-section',
         'sections.hero-section',
+        'sections.resource-list-section',
       ]
     >;
     categories_pages: Schema.Attribute.Relation<
