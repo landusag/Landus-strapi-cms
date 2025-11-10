@@ -36,7 +36,8 @@
         "sections.quick-facts-section",
         "sections.expandable-info-section",
         "sections.info-cards-section",
-        "sections.hero-section"
+        "sections.hero-section",
+        "sections.resource-list-section"
       ]
     },
     "categories_pages": {

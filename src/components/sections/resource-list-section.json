@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_resource_list_sections",
+  "info": {
+    "displayName": "ResourceListSection"
+  },
+  "options": {},
+  "attributes": {
+    "sectionName": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "component",
+      "component": "shared.theme",
+      "repeatable": false
+    },
+    "headerSection": {
+      "type": "component",
+      "component": "shared.section-header",
+      "repeatable": false
+    },
+    "resources": {
+      "type": "component",
+      "component": "shared.resource-item",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
