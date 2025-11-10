@@ -290,6 +290,7 @@ export interface SectionsMediaTeaserSection extends Struct.ComponentSchema {
     link: Schema.Attribute.Component<'shared.link', true>;
     logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     MediaType: Schema.Attribute.Enumeration<['image', 'video']>;
+    MediaURL: Schema.Attribute.String;
     postButtonText: Schema.Attribute.String;
     QuickFact: Schema.Attribute.Component<'shared.quick-fact-item', true>;
     sectionName: Schema.Attribute.String;
@@ -323,6 +324,18 @@ export interface SectionsQuickFactsSection extends Struct.ComponentSchema {
     headerSection: Schema.Attribute.Component<'shared.section-header', false>;
     sectionName: Schema.Attribute.String;
     stats: Schema.Attribute.Component<'shared.stat', true>;
+    theme: Schema.Attribute.Component<'shared.theme', false>;
+  };
+}
+
+export interface SectionsResourceListSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_resource_list_sections';
+  info: {
+    displayName: 'ResourceListSection';
+  };
+  attributes: {
+    headerSection: Schema.Attribute.Component<'shared.section-header', false>;
+    sectionName: Schema.Attribute.String;
     theme: Schema.Attribute.Component<'shared.theme', false>;
   };
 }
@@ -606,6 +619,19 @@ export interface SharedQuickFactItem extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedResourceItem extends Struct.ComponentSchema {
+  collectionName: 'components_shared_resource_items';
+  info: {
+    displayName: 'ResourceItem';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    file: Schema.Attribute.Media<'files'>;
+    link: Schema.Attribute.Component<'shared.link', false>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedSectionHeader extends Struct.ComponentSchema {
   collectionName: 'components_shared_section_headers';
   info: {
@@ -721,6 +747,7 @@ declare module '@strapi/strapi' {
       'sections.media-teaser-section': SectionsMediaTeaserSection;
       'sections.page-hero-section': SectionsPageHeroSection;
       'sections.quick-facts-section': SectionsQuickFactsSection;
+      'sections.resource-list-section': SectionsResourceListSection;
       'sections.team-section': SectionsTeamSection;
       'sections.testimonial-section': SectionsTestimonialSection;
       'sections.timeline-section': SectionsTimelineSection;
@@ -742,6 +769,7 @@ declare module '@strapi/strapi' {
       'shared.media-link': SharedMediaLink;
       'shared.my-account-section': SharedMyAccountSection;
       'shared.quick-fact-item': SharedQuickFactItem;
+      'shared.resource-item': SharedResourceItem;
       'shared.section-header': SharedSectionHeader;
       'shared.seo': SharedSeo;
       'shared.social-media-icon-links': SharedSocialMediaIconLinks;
