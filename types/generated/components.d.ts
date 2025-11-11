@@ -363,6 +363,7 @@ export interface SectionsTestimonialSection extends Struct.ComponentSchema {
     displayName: 'TestimonialSection';
   };
   attributes: {
+    bgImage: Schema.Attribute.Media<'images' | 'videos'>;
     headerSection: Schema.Attribute.Component<'shared.section-header', false>;
     sectionName: Schema.Attribute.String;
     testimonials: Schema.Attribute.Component<'shared.testimonial-item', true>;
@@ -370,7 +371,7 @@ export interface SectionsTestimonialSection extends Struct.ComponentSchema {
       ['Individual Testimonial', 'Group Testimonial']
     > &
       Schema.Attribute.DefaultTo<'Individual Testimonial'>;
-    theme: Schema.Attribute.Component<'shared.theme', true>;
+    theme: Schema.Attribute.Component<'shared.theme', false>;
   };
 }
 
@@ -705,7 +706,9 @@ export interface SharedTheme extends Struct.ComponentSchema {
     displayName: 'Theme';
   };
   attributes: {
-    theme: Schema.Attribute.Enumeration<['semi_light', 'light', 'dark']> &
+    theme: Schema.Attribute.Enumeration<
+      ['semi_light', 'light', 'dark', 'bgImage']
+    > &
       Schema.Attribute.DefaultTo<'light'>;
   };
 }
