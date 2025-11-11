@@ -11,7 +11,7 @@
     "theme": {
       "type": "component",
       "component": "shared.theme",
-      "repeatable": true
+      "repeatable": false
     },
     "headerSection": {
       "type": "component",
@@ -29,6 +29,14 @@
       "enum": [
         "Individual Testimonial",
         "Group Testimonial"
+      ]
+    },
+    "bgImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "videos"
       ]
     }
   },
