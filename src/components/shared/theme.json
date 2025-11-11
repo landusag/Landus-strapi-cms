@@ -11,7 +11,8 @@
       "enum": [
         "semi_light",
         "light",
-        "dark"
+        "dark",
+        "bgImage"
       ]
     }
   },
