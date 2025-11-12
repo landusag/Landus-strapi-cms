@@ -518,6 +518,7 @@ export interface SharedFaqList extends Struct.ComponentSchema {
   };
   attributes: {
     answer: Schema.Attribute.Blocks;
+    ctaButton: Schema.Attribute.Component<'shared.button', true>;
     question: Schema.Attribute.Text;
   };
 }
