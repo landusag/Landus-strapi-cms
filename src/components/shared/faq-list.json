@@ -10,6 +10,11 @@
     },
     "answer": {
       "type": "blocks"
+    },
+    "CtaButton": {
+      "type": "component",
+      "component": "shared.button",
+      "repeatable": true
     }
   },
   "config": {}
