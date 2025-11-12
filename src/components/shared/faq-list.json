@@ -11,7 +11,7 @@
     "answer": {
       "type": "blocks"
     },
-    "CtaButton": {
+    "ctaButton": {
       "type": "component",
       "component": "shared.button",
       "repeatable": true
