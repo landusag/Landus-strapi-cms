@@ -37,7 +37,8 @@
         "sections.expandable-info-section",
         "sections.info-cards-section",
         "sections.hero-section",
-        "sections.resource-list-section"
+        "sections.resource-list-section",
+        "sections.instruction-steps-section"
       ]
     },
     "categories_pages": {
