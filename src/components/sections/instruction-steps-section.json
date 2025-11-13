@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_sections_instruction_steps_sections",
+  "info": {
+    "displayName": "InstructionStepsSection"
+  },
+  "options": {},
+  "attributes": {
+    "sectionName": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "component",
+      "component": "shared.theme",
+      "repeatable": false
+    },
+    "header": {
+      "type": "component",
+      "component": "shared.section-header",
+      "repeatable": true
+    },
+    "stepInfo": {
+      "type": "component",
+      "component": "shared.step-item",
+      "repeatable": true
+    },
+    "button": {
+      "type": "component",
+      "component": "shared.button",
+      "repeatable": true
+    },
+    "link": {
+      "type": "component",
+      "component": "shared.link",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
