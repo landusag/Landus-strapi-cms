@@ -272,6 +272,22 @@ export interface SectionsInfoCardsSection extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsInstructionStepsSection
+  extends Struct.ComponentSchema {
+  collectionName: 'components_sections_instruction_steps_sections';
+  info: {
+    displayName: 'InstructionStepsSection';
+  };
+  attributes: {
+    button: Schema.Attribute.Component<'shared.button', true>;
+    header: Schema.Attribute.Component<'shared.section-header', true>;
+    link: Schema.Attribute.Component<'shared.link', true>;
+    sectionName: Schema.Attribute.String;
+    stepInfo: Schema.Attribute.Component<'shared.step-item', true>;
+    theme: Schema.Attribute.Component<'shared.theme', false>;
+  };
+}
+
 export interface SectionsMediaTeaserSection extends Struct.ComponentSchema {
   collectionName: 'components_sections_media_teaser_sections';
   info: {
@@ -688,6 +704,18 @@ export interface SharedStat extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedStepItem extends Struct.ComponentSchema {
+  collectionName: 'components_shared_step_items';
+  info: {
+    displayName: 'StepItem';
+  };
+  attributes: {
+    description: Schema.Attribute.Blocks;
+    icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SharedTestimonialItem extends Struct.ComponentSchema {
   collectionName: 'components_shared_testimonial_items';
   info: {
@@ -749,6 +777,7 @@ declare module '@strapi/strapi' {
       'sections.faq-section': SectionsFaqSection;
       'sections.hero-section': SectionsHeroSection;
       'sections.info-cards-section': SectionsInfoCardsSection;
+      'sections.instruction-steps-section': SectionsInstructionStepsSection;
       'sections.media-teaser-section': SectionsMediaTeaserSection;
       'sections.page-hero-section': SectionsPageHeroSection;
       'sections.quick-facts-section': SectionsQuickFactsSection;
@@ -779,6 +808,7 @@ declare module '@strapi/strapi' {
       'shared.seo': SharedSeo;
       'shared.social-media-icon-links': SharedSocialMediaIconLinks;
       'shared.stat': SharedStat;
+      'shared.step-item': SharedStepItem;
       'shared.testimonial-item': SharedTestimonialItem;
       'shared.theme': SharedTheme;
       'shared.timeline-item': SharedTimelineItem;
