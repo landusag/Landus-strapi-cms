@@ -16,7 +16,7 @@
     "header": {
       "type": "component",
       "component": "shared.section-header",
-      "repeatable": true
+      "repeatable": false
     },
     "stepInfo": {
       "type": "component",
