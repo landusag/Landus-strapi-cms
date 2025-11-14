@@ -280,7 +280,7 @@ export interface SectionsInstructionStepsSection
   };
   attributes: {
     button: Schema.Attribute.Component<'shared.button', true>;
-    header: Schema.Attribute.Component<'shared.section-header', true>;
+    header: Schema.Attribute.Component<'shared.section-header', false>;
     link: Schema.Attribute.Component<'shared.link', true>;
     sectionName: Schema.Attribute.String;
     stepInfo: Schema.Attribute.Component<'shared.step-item', true>;
