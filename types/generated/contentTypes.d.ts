@@ -406,6 +406,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     previewUrl: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    search_text: Schema.Attribute.Text;
     slug: Schema.Attribute.UID<'title'>;
     startDateTime: Schema.Attribute.DateTime;
     subHeading: Schema.Attribute.String;
@@ -719,7 +720,9 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::page.page'> &
       Schema.Attribute.Private;
+    previewUrl: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    search_text: Schema.Attribute.Text;
     seo: Schema.Attribute.Component<'shared.seo', false>;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
