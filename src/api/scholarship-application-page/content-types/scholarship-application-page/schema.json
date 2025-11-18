@@ -1,0 +1,51 @@
+{
+  "kind": "singleType",
+  "collectionName": "scholarship_application_pages",
+  "info": {
+    "singularName": "scholarship-application-page",
+    "pluralName": "scholarship-application-pages",
+    "displayName": "ScholarshipApplicationPage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    },
+    "intro": {
+      "type": "text"
+    },
+    "introParagraph": {
+      "type": "text"
+    },
+    "deadlineNotice": {
+      "type": "text"
+    },
+    "applicationPdf": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "downloadButtonLabel": {
+      "type": "string",
+      "required": true
+    },
+    "maxFileSizeMb": {
+      "type": "biginteger"
+    },
+    "enableForm": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

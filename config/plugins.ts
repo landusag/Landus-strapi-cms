@@ -34,4 +34,12 @@ module.exports = {
       },
     },
   },
+    upload: {
+    config: {
+      provider: 'local',
+      providerOptions: {
+        sizeLimit: 50000000, // 50 MB
+      },
+    },
+  },
 };
