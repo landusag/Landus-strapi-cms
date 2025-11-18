@@ -406,6 +406,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     previewUrl: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    search_text: Schema.Attribute.Text;
     slug: Schema.Attribute.UID<'title'>;
     startDateTime: Schema.Attribute.DateTime;
     subHeading: Schema.Attribute.String;
@@ -719,9 +720,83 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::page.page'> &
       Schema.Attribute.Private;
+    previewUrl: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    search_text: Schema.Attribute.Text;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiScholarshipApplicationPageScholarshipApplicationPage
+  extends Struct.SingleTypeSchema {
+  collectionName: 'scholarship_application_pages';
+  info: {
+    displayName: 'ScholarshipApplicationPage';
+    pluralName: 'scholarship-application-pages';
+    singularName: 'scholarship-application-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    applicationPdf: Schema.Attribute.Media<'files'> & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    deadlineNotice: Schema.Attribute.Text;
+    downloadButtonLabel: Schema.Attribute.String & Schema.Attribute.Required;
+    enableForm: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    intro: Schema.Attribute.Text;
+    introParagraph: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::scholarship-application-page.scholarship-application-page'
+    > &
+      Schema.Attribute.Private;
+    maxFileSizeMb: Schema.Attribute.BigInteger;
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'shared.seo', false>;
     title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiScholarshipApplicationScholarshipApplication
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'scholarship_applications';
+  info: {
+    displayName: 'ScholarshipApplication';
+    pluralName: 'scholarship-applications';
+    singularName: 'scholarship-application';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    applicationFile: Schema.Attribute.Media<'files'> &
+      Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email & Schema.Attribute.Required;
+    firstName: Schema.Attribute.String & Schema.Attribute.Required;
+    lastName: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::scholarship-application.scholarship-application'
+    > &
+      Schema.Attribute.Private;
+    phoneNumber: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    referenceLetter: Schema.Attribute.Media<'files'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1383,6 +1458,8 @@ declare module '@strapi/strapi' {
       'api::location-page.location-page': ApiLocationPageLocationPage;
       'api::location.location': ApiLocationLocation;
       'api::page.page': ApiPagePage;
+      'api::scholarship-application-page.scholarship-application-page': ApiScholarshipApplicationPageScholarshipApplicationPage;
+      'api::scholarship-application.scholarship-application': ApiScholarshipApplicationScholarshipApplication;
       'api::section.section': ApiSectionSection;
       'api::service.service': ApiServiceService;
       'api::team-category.team-category': ApiTeamCategoryTeamCategory;
