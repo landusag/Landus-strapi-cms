@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "scholarship_applications",
+  "info": {
+    "singularName": "scholarship-application",
+    "pluralName": "scholarship-applications",
+    "displayName": "ScholarshipApplication"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "firstName": {
+      "type": "string",
+      "required": true
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": false
+    },
+    "phoneNumber": {
+      "type": "string",
+      "required": true
+    },
+    "applicationFile": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "referenceLetter": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "files"
+      ]
+    }
+  }
+}

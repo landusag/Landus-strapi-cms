@@ -46,6 +46,16 @@
       "relation": "manyToMany",
       "target": "api::categories-page.categories-page",
       "mappedBy": "page"
+    },
+    "search_text": {
+      "type": "text",
+      "config": {
+        "hidden": true
+      }
+    },
+    "previewUrl": {
+      "type": "string",
+      "config": { "hidden": true }
     }
   }
 }
