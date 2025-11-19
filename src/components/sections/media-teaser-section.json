@@ -93,6 +93,9 @@
         "videos",
         "audios"
       ]
+    },
+    "isHeaderSplit": {
+      "type": "boolean"
     }
   },
   "config": {}

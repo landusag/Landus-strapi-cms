@@ -298,6 +298,7 @@ export interface SectionsMediaTeaserSection extends Struct.ComponentSchema {
     enableOverlay: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     headerSection: Schema.Attribute.Component<'shared.section-header', false>;
     images: Schema.Attribute.Media<'images' | 'videos', true>;
+    isHeaderSplit: Schema.Attribute.Boolean;
     layout: Schema.Attribute.Enumeration<
       ['content-left', 'content-right', 'content-top', 'content-bottom']
     > &
@@ -440,6 +441,8 @@ export interface SharedButton extends Struct.ComponentSchema {
     displayName: 'Button';
   };
   attributes: {
+    arrowAlign: Schema.Attribute.Enumeration<['left', 'right']>;
+    isShowArrow: Schema.Attribute.Boolean;
     target: Schema.Attribute.Enumeration<
       ['_blank', '_self', '_parent', '_top']
     >;
