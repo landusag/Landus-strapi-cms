@@ -27,6 +27,12 @@
       "type": "component",
       "component": "shared.button",
       "repeatable": true
+    },
+    "gridSize": {
+      "type": "integer",
+      "default": 4,
+      "min": 2,
+      "max": 5
     }
   },
   "config": {}

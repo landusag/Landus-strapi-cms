@@ -31,7 +31,8 @@
       ]
     },
     "isShowArrow": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     "arrowAlign": {
       "type": "enumeration",
@@ -45,6 +46,7 @@
           ]
         }
       },
+      "default": "left",
       "enum": [
         "left",
         "right"

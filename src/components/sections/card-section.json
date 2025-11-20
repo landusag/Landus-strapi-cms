@@ -22,6 +22,10 @@
       "type": "component",
       "component": "shared.card",
       "repeatable": true
+    },
+    "isSliderRequired": {
+      "type": "boolean",
+      "default": false
     }
   },
   "config": {}
