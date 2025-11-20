@@ -48,14 +48,16 @@
       "mappedBy": "page"
     },
     "search_text": {
-      "type": "text",
-      "config": {
-        "hidden": true
-      }
+      "type": "text"
     },
     "previewUrl": {
-      "type": "string",
-      "config": { "hidden": true }
+      "type": "string"
+    },
+    "section": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::section.section",
+      "inversedBy": "pages"
     }
   }
 }
