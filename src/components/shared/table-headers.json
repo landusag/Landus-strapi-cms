@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_shared_table_headers",
+  "info": {
+    "displayName": "tableHeaders"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}
