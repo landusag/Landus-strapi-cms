@@ -723,6 +723,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     previewUrl: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     search_text: Schema.Attribute.Text;
+    section: Schema.Attribute.Relation<'manyToOne', 'api::section.section'>;
     seo: Schema.Attribute.Component<'shared.seo', false>;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
@@ -827,6 +828,7 @@ export interface ApiSectionSection extends Struct.CollectionTypeSchema {
       'api::section.section'
     > &
       Schema.Attribute.Private;
+    pages: Schema.Attribute.Relation<'oneToMany', 'api::page.page'>;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;

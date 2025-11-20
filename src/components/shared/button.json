@@ -29,6 +29,28 @@
         "outline",
         "muted"
       ]
+    },
+    "isShowArrow": {
+      "type": "boolean",
+      "default": false
+    },
+    "arrowAlign": {
+      "type": "enumeration",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "isShowArrow"
+            },
+            true
+          ]
+        }
+      },
+      "default": "left",
+      "enum": [
+        "left",
+        "right"
+      ]
     }
   },
   "config": {}

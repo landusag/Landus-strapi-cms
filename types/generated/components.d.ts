@@ -148,6 +148,8 @@ export interface SectionsCardSection extends Struct.ComponentSchema {
   attributes: {
     card: Schema.Attribute.Component<'shared.card', true>;
     headerSection: Schema.Attribute.Component<'shared.section-header', false>;
+    isSliderRequired: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
     sectionName: Schema.Attribute.String;
     theme: Schema.Attribute.Component<'shared.theme', false>;
   };
@@ -208,6 +210,15 @@ export interface SectionsDifferenceSection extends Struct.ComponentSchema {
   attributes: {
     buttons: Schema.Attribute.Component<'shared.button', true>;
     Differences: Schema.Attribute.Component<'shared.difference', true>;
+    gridSize: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 5;
+          min: 2;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<4>;
     headerSection: Schema.Attribute.Component<'shared.section-header', false>;
     sectionName: Schema.Attribute.String;
     theme: Schema.Attribute.Component<'shared.theme', false>;
@@ -298,6 +309,7 @@ export interface SectionsMediaTeaserSection extends Struct.ComponentSchema {
     enableOverlay: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     headerSection: Schema.Attribute.Component<'shared.section-header', false>;
     images: Schema.Attribute.Media<'images' | 'videos', true>;
+    isHeaderSplit: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     layout: Schema.Attribute.Enumeration<
       ['content-left', 'content-right', 'content-top', 'content-bottom']
     > &
@@ -440,6 +452,9 @@ export interface SharedButton extends Struct.ComponentSchema {
     displayName: 'Button';
   };
   attributes: {
+    arrowAlign: Schema.Attribute.Enumeration<['left', 'right']> &
+      Schema.Attribute.DefaultTo<'left'>;
+    isShowArrow: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     target: Schema.Attribute.Enumeration<
       ['_blank', '_self', '_parent', '_top']
     >;

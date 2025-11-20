@@ -18,6 +18,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::categories-page.categories-page"
+    },
+    "pages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::page.page",
+      "mappedBy": "section"
     }
   }
 }
