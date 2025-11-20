@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_sections_table_with_content_sections",
+  "info": {
+    "displayName": "TableWithContentSection"
+  },
+  "options": {},
+  "attributes": {
+    "sectionName": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "component",
+      "component": "shared.theme",
+      "repeatable": false
+    },
+    "headerSection": {
+      "type": "component",
+      "component": "shared.section-header",
+      "repeatable": false
+    },
+    "tableHeaders": {
+      "type": "component",
+      "component": "shared.table-headers",
+      "repeatable": true
+    },
+    "tableRows": {
+      "type": "component",
+      "component": "shared.table-cell",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

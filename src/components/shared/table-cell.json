@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_shared_table_cells",
+  "info": {
+    "displayName": "tableCell"
+  },
+  "options": {},
+  "attributes": {
+    "textValue": {
+      "type": "text"
+    },
+    "showCheckmark": {
+      "type": "boolean"
+    },
+    "link": {
+      "type": "component",
+      "component": "shared.link",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

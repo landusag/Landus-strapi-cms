@@ -369,6 +369,21 @@ export interface SectionsResourceListSection extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsTableWithContentSection
+  extends Struct.ComponentSchema {
+  collectionName: 'components_sections_table_with_content_sections';
+  info: {
+    displayName: 'TableWithContentSection';
+  };
+  attributes: {
+    headerSection: Schema.Attribute.Component<'shared.section-header', false>;
+    sectionName: Schema.Attribute.String;
+    tableHeaders: Schema.Attribute.Component<'shared.table-headers', true>;
+    tableRows: Schema.Attribute.Component<'shared.table-cell', true>;
+    theme: Schema.Attribute.Component<'shared.theme', false>;
+  };
+}
+
 export interface SectionsTeamSection extends Struct.ComponentSchema {
   collectionName: 'components_sections_team_sections';
   info: {
@@ -731,6 +746,28 @@ export interface SharedStepItem extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedTableCell extends Struct.ComponentSchema {
+  collectionName: 'components_shared_table_cells';
+  info: {
+    displayName: 'tableCell';
+  };
+  attributes: {
+    link: Schema.Attribute.Component<'shared.link', false>;
+    showCheckmark: Schema.Attribute.Boolean;
+    textValue: Schema.Attribute.Text;
+  };
+}
+
+export interface SharedTableHeaders extends Struct.ComponentSchema {
+  collectionName: 'components_shared_table_headers';
+  info: {
+    displayName: 'tableHeaders';
+  };
+  attributes: {
+    label: Schema.Attribute.String;
+  };
+}
+
 export interface SharedTestimonialItem extends Struct.ComponentSchema {
   collectionName: 'components_shared_testimonial_items';
   info: {
@@ -797,6 +834,7 @@ declare module '@strapi/strapi' {
       'sections.page-hero-section': SectionsPageHeroSection;
       'sections.quick-facts-section': SectionsQuickFactsSection;
       'sections.resource-list-section': SectionsResourceListSection;
+      'sections.table-with-content-section': SectionsTableWithContentSection;
       'sections.team-section': SectionsTeamSection;
       'sections.testimonial-section': SectionsTestimonialSection;
       'sections.timeline-section': SectionsTimelineSection;
@@ -824,6 +862,8 @@ declare module '@strapi/strapi' {
       'shared.social-media-icon-links': SharedSocialMediaIconLinks;
       'shared.stat': SharedStat;
       'shared.step-item': SharedStepItem;
+      'shared.table-cell': SharedTableCell;
+      'shared.table-headers': SharedTableHeaders;
       'shared.testimonial-item': SharedTestimonialItem;
       'shared.theme': SharedTheme;
       'shared.timeline-item': SharedTimelineItem;
