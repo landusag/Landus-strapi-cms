@@ -373,6 +373,41 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAcreEdgePortfolioAcreEdgePortfolio
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'acre_edge_portfolios';
+  info: {
+    displayName: 'AcreEdgePortfolio';
+    pluralName: 'acre-edge-portfolios';
+    singularName: 'acre-edge-portfolio';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::acre-edge-portfolio.acre-edge-portfolio'
+    > &
+      Schema.Attribute.Private;
+    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'title'>;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    videoUrl: Schema.Attribute.String;
+  };
+}
+
 export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   collectionName: 'articles';
   info: {
@@ -709,6 +744,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.resource-list-section',
         'sections.instruction-steps-section',
         'sections.table-with-content-section',
+        'sections.acre-edge-portfolio-section',
       ]
     >;
     categories_pages: Schema.Attribute.Relation<
@@ -726,6 +762,43 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     search_text: Schema.Attribute.Text;
     section: Schema.Attribute.Relation<'manyToOne', 'api::section.section'>;
     seo: Schema.Attribute.Component<'shared.seo', false>;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProductProduct extends Struct.CollectionTypeSchema {
+  collectionName: 'products';
+  info: {
+    displayName: 'Product';
+    pluralName: 'products';
+    singularName: 'product';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    category: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::acre-edge-portfolio.acre-edge-portfolio'
+    >;
+    content: Schema.Attribute.Blocks;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product.product'
+    > &
+      Schema.Attribute.Private;
+    productSidebar: Schema.Attribute.Component<'product.product-sidebar', true>;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'title'>;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1451,6 +1524,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::acre-edge-portfolio.acre-edge-portfolio': ApiAcreEdgePortfolioAcreEdgePortfolio;
       'api::article.article': ApiArticleArticle;
       'api::categories-page.categories-page': ApiCategoriesPageCategoriesPage;
       'api::category.category': ApiCategoryCategory;
@@ -1461,6 +1535,7 @@ declare module '@strapi/strapi' {
       'api::location-page.location-page': ApiLocationPageLocationPage;
       'api::location.location': ApiLocationLocation;
       'api::page.page': ApiPagePage;
+      'api::product.product': ApiProductProduct;
       'api::scholarship-application-page.scholarship-application-page': ApiScholarshipApplicationPageScholarshipApplicationPage;
       'api::scholarship-application.scholarship-application': ApiScholarshipApplicationScholarshipApplication;
       'api::section.section': ApiSectionSection;

@@ -140,6 +140,60 @@ export interface NavigationTopNavItem extends Struct.ComponentSchema {
   };
 }
 
+export interface ProductAccordionContentBlock extends Struct.ComponentSchema {
+  collectionName: 'components_product_accordion_content_blocks';
+  info: {
+    displayName: 'accordionContentBlock';
+  };
+  attributes: {
+    contact: Schema.Attribute.String;
+    file: Schema.Attribute.Media<'files'>;
+    link: Schema.Attribute.Component<'shared.link', true>;
+    Type: Schema.Attribute.Enumeration<['text', 'link', 'file', 'contact']>;
+  };
+}
+
+export interface ProductAccordionItem extends Struct.ComponentSchema {
+  collectionName: 'components_product_accordion_items';
+  info: {
+    displayName: 'accordionItem';
+  };
+  attributes: {
+    contentBlocks: Schema.Attribute.Component<
+      'product.accordion-content-block',
+      true
+    >;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface ProductProductSidebar extends Struct.ComponentSchema {
+  collectionName: 'components_product_product_sidebars';
+  info: {
+    displayName: 'ProductSidebar';
+  };
+  attributes: {
+    items: Schema.Attribute.Component<'product.accordion-item', true>;
+  };
+}
+
+export interface SectionsAcreEdgePortfolioSection
+  extends Struct.ComponentSchema {
+  collectionName: 'components_sections_acre_edge_portfolio_sections';
+  info: {
+    displayName: 'AcreEdgePortfolioSection';
+  };
+  attributes: {
+    acre_edge_portfolio: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::acre-edge-portfolio.acre-edge-portfolio'
+    >;
+    headerSection: Schema.Attribute.Component<'shared.section-header', false>;
+    sectionName: Schema.Attribute.String;
+    theme: Schema.Attribute.Component<'shared.theme', false>;
+  };
+}
+
 export interface SectionsCardSection extends Struct.ComponentSchema {
   collectionName: 'components_sections_card_sections';
   info: {
@@ -820,6 +874,10 @@ declare module '@strapi/strapi' {
       'navigation.nav-group': NavigationNavGroup;
       'navigation.top-bar': NavigationTopBar;
       'navigation.top-nav-item': NavigationTopNavItem;
+      'product.accordion-content-block': ProductAccordionContentBlock;
+      'product.accordion-item': ProductAccordionItem;
+      'product.product-sidebar': ProductProductSidebar;
+      'sections.acre-edge-portfolio-section': SectionsAcreEdgePortfolioSection;
       'sections.card-section': SectionsCardSection;
       'sections.career-section': SectionsCareerSection;
       'sections.contact-section': SectionsContactSection;
