@@ -1,0 +1,64 @@
+{
+  "collectionName": "components_product_accordion_content_blocks",
+  "info": {
+    "displayName": "accordionContentBlock"
+  },
+  "options": {},
+  "attributes": {
+    "Type": {
+      "type": "enumeration",
+      "enum": [
+        "text",
+        "link",
+        "file",
+        "contact"
+      ]
+    },
+    "link": {
+      "type": "component",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "Type"
+            },
+            "link"
+          ]
+        }
+      },
+      "component": "shared.link",
+      "repeatable": true
+    },
+    "file": {
+      "type": "media",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "Type"
+            },
+            "file"
+          ]
+        }
+      },
+      "multiple": false,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "contact": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "Type"
+            },
+            "contact"
+          ]
+        }
+      }
+    }
+  },
+  "config": {}
+}

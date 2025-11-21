@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_acre_edge_portfolio_sections",
+  "info": {
+    "displayName": "AcreEdgePortfolioSection"
+  },
+  "options": {},
+  "attributes": {
+    "sectionName": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "component",
+      "component": "shared.theme",
+      "repeatable": false
+    },
+    "headerSection": {
+      "type": "component",
+      "component": "shared.section-header",
+      "repeatable": false
+    },
+    "acre_edge_portfolio": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::acre-edge-portfolio.acre-edge-portfolio"
+    }
+  },
+  "config": {}
+}

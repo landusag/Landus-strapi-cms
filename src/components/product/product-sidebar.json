@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_product_product_sidebars",
+  "info": {
+    "displayName": "ProductSidebar"
+  },
+  "options": {},
+  "attributes": {
+    "items": {
+      "type": "component",
+      "component": "product.accordion-item",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
