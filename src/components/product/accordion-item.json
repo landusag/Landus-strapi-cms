@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_product_accordion_items",
+  "info": {
+    "displayName": "accordionItem"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "contentBlocks": {
+      "type": "component",
+      "component": "product.accordion-content-block",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
