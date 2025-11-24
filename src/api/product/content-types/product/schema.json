@@ -41,6 +41,12 @@
       "relation": "manyToOne",
       "target": "api::acre-edge-portfolio.acre-edge-portfolio",
       "inversedBy": "products"
+    },
+    "previewUrl": {
+      "type": "string"
+    },
+    "postDate": {
+      "type": "date"
     }
   }
 }

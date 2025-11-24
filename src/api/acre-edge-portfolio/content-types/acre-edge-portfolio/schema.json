@@ -39,6 +39,9 @@
       "relation": "oneToMany",
       "target": "api::product.product",
       "mappedBy": "category"
+    },
+    "previewUrl": {
+      "type": "string"
     }
   }
 }
