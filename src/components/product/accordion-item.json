@@ -9,6 +9,9 @@
       "type": "string",
       "required": true
     },
+    "description": {
+      "type": "string"
+    },
     "contentBlocks": {
       "type": "component",
       "component": "product.accordion-content-block",
