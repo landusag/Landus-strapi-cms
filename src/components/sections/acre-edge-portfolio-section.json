@@ -18,9 +18,9 @@
       "component": "shared.section-header",
       "repeatable": false
     },
-    "acre_edge_portfolio": {
+    "acre_edge_portfolios": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::acre-edge-portfolio.acre-edge-portfolio"
     }
   },
