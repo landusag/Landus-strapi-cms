@@ -27,6 +27,11 @@
       "type": "component",
       "component": "shared.contact-detail",
       "repeatable": true
+    },
+    "buttons": {
+      "type": "component",
+      "component": "shared.button",
+      "repeatable": true
     }
   },
   "config": {}

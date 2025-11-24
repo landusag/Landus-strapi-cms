@@ -230,6 +230,7 @@ export interface SectionsContactSection extends Struct.ComponentSchema {
     displayName: 'ContactSection';
   };
   attributes: {
+    buttons: Schema.Attribute.Component<'shared.button', true>;
     contactList: Schema.Attribute.Component<'shared.contact-detail', true>;
     headerSection: Schema.Attribute.Component<'shared.section-header', false>;
     info: Schema.Attribute.Component<'shared.info', true>;
@@ -378,6 +379,7 @@ export interface SectionsMediaTeaserSection extends Struct.ComponentSchema {
     sectionName: Schema.Attribute.String;
     stat: Schema.Attribute.Component<'shared.stat', false>;
     theme: Schema.Attribute.Component<'shared.theme', false>;
+    useCoverMode: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
   };
 }
 
