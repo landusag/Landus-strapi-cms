@@ -8,10 +8,9 @@
     "Type": {
       "type": "enumeration",
       "enum": [
-        "text",
         "link",
         "file",
-        "contact"
+        "text"
       ]
     },
     "link": {
@@ -46,7 +45,7 @@
         "files"
       ]
     },
-    "contact": {
+    "text": {
       "type": "string",
       "conditions": {
         "visible": {
@@ -54,7 +53,7 @@
             {
               "var": "Type"
             },
-            "contact"
+            "text"
           ]
         }
       }
