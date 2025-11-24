@@ -97,6 +97,10 @@
     "isHeaderSplit": {
       "type": "boolean",
       "default": false
+    },
+    "useCoverMode": {
+      "type": "boolean",
+      "default": true
     }
   },
   "config": {}
