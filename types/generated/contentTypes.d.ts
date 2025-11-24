@@ -397,6 +397,7 @@ export interface ApiAcreEdgePortfolioAcreEdgePortfolio
       'api::acre-edge-portfolio.acre-edge-portfolio'
     > &
       Schema.Attribute.Private;
+    previewUrl: Schema.Attribute.String;
     products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'title'>;
@@ -796,6 +797,8 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       'api::product.product'
     > &
       Schema.Attribute.Private;
+    postDate: Schema.Attribute.Date;
+    previewUrl: Schema.Attribute.String;
     productSidebar: Schema.Attribute.Component<'product.product-sidebar', true>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'title'>;
