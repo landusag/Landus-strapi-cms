@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_inquiry_contact_items",
+  "info": {
+    "displayName": "ContactItems"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "phone",
+        "email",
+        "address",
+        "link"
+      ]
+    }
+  },
+  "config": {}
+}

@@ -84,6 +84,32 @@ export interface GlobalFooter extends Struct.ComponentSchema {
   attributes: {};
 }
 
+export interface InquiryContactItems extends Struct.ComponentSchema {
+  collectionName: 'components_inquiry_contact_items';
+  info: {
+    displayName: 'ContactItems';
+  };
+  attributes: {
+    label: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<['phone', 'email', 'address', 'link']>;
+    url: Schema.Attribute.String;
+    value: Schema.Attribute.String;
+  };
+}
+
+export interface InquiryInquiryCards extends Struct.ComponentSchema {
+  collectionName: 'components_inquiry_inquiry_cards_s';
+  info: {
+    displayName: 'InquiryCards ';
+  };
+  attributes: {
+    contactItems: Schema.Attribute.Component<'inquiry.contact-items', true>;
+    description: Schema.Attribute.Text;
+    icon: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface NavigationLink extends Struct.ComponentSchema {
   collectionName: 'components_navigation_links';
   info: {
@@ -334,6 +360,19 @@ export interface SectionsInfoCardsSection extends Struct.ComponentSchema {
     buttons: Schema.Attribute.Component<'shared.button', true>;
     card: Schema.Attribute.Component<'shared.card', true>;
     headerSection: Schema.Attribute.Component<'shared.section-header', false>;
+    sectionName: Schema.Attribute.String;
+    theme: Schema.Attribute.Component<'shared.theme', false>;
+  };
+}
+
+export interface SectionsInquirySection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_inquiry_sections';
+  info: {
+    displayName: 'InquirySection';
+  };
+  attributes: {
+    headerSection: Schema.Attribute.Component<'shared.section-header', false>;
+    inquiryCards: Schema.Attribute.Component<'inquiry.inquiry-cards', true>;
     sectionName: Schema.Attribute.String;
     theme: Schema.Attribute.Component<'shared.theme', false>;
   };
@@ -874,6 +913,8 @@ declare module '@strapi/strapi' {
       'footer.footer-column': FooterFooterColumn;
       'footer.footer-group': FooterFooterGroup;
       'global.footer': GlobalFooter;
+      'inquiry.contact-items': InquiryContactItems;
+      'inquiry.inquiry-cards': InquiryInquiryCards;
       'navigation.link': NavigationLink;
       'navigation.nav-group': NavigationNavGroup;
       'navigation.top-bar': NavigationTopBar;
@@ -891,6 +932,7 @@ declare module '@strapi/strapi' {
       'sections.faq-section': SectionsFaqSection;
       'sections.hero-section': SectionsHeroSection;
       'sections.info-cards-section': SectionsInfoCardsSection;
+      'sections.inquiry-section': SectionsInquirySection;
       'sections.instruction-steps-section': SectionsInstructionStepsSection;
       'sections.media-teaser-section': SectionsMediaTeaserSection;
       'sections.page-hero-section': SectionsPageHeroSection;
