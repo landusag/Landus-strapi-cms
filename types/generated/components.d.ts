@@ -185,8 +185,8 @@ export interface SectionsAcreEdgePortfolioSection
     displayName: 'AcreEdgePortfolioSection';
   };
   attributes: {
-    acre_edge_portfolio: Schema.Attribute.Relation<
-      'oneToOne',
+    acre_edge_portfolios: Schema.Attribute.Relation<
+      'oneToMany',
       'api::acre-edge-portfolio.acre-edge-portfolio'
     >;
     headerSection: Schema.Attribute.Component<'shared.section-header', false>;
