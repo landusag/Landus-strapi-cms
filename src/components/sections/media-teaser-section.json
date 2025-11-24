@@ -72,16 +72,12 @@
         }
       }
     },
-    "enableOverlay": {
-      "type": "boolean",
-      "default": false
-    },
     "QuickFact": {
       "type": "component",
       "component": "shared.quick-fact-item",
       "repeatable": true
     },
-    "postButtonText": {
+    "iFrameURL": {
       "type": "string"
     },
     "logo": {
@@ -94,6 +90,9 @@
         "audios"
       ]
     },
+    "postButtonText": {
+      "type": "string"
+    },
     "isHeaderSplit": {
       "type": "boolean",
       "default": false
@@ -101,6 +100,10 @@
     "useCoverMode": {
       "type": "boolean",
       "default": true
+    },
+    "enableOverlay": {
+      "type": "boolean",
+      "default": false
     }
   },
   "config": {}

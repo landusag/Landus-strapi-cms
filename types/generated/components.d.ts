@@ -146,10 +146,10 @@ export interface ProductAccordionContentBlock extends Struct.ComponentSchema {
     displayName: 'accordionContentBlock';
   };
   attributes: {
-    contact: Schema.Attribute.String;
     file: Schema.Attribute.Media<'files'>;
     link: Schema.Attribute.Component<'shared.link', true>;
-    Type: Schema.Attribute.Enumeration<['text', 'link', 'file', 'contact']>;
+    text: Schema.Attribute.String;
+    Type: Schema.Attribute.Enumeration<['link', 'file', 'text']>;
   };
 }
 
@@ -163,6 +163,7 @@ export interface ProductAccordionItem extends Struct.ComponentSchema {
       'product.accordion-content-block',
       true
     >;
+    description: Schema.Attribute.String;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
@@ -363,6 +364,7 @@ export interface SectionsMediaTeaserSection extends Struct.ComponentSchema {
     button: Schema.Attribute.Component<'shared.button', true>;
     enableOverlay: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     headerSection: Schema.Attribute.Component<'shared.section-header', false>;
+    iFrameURL: Schema.Attribute.String;
     images: Schema.Attribute.Media<'images' | 'videos', true>;
     isHeaderSplit: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     layout: Schema.Attribute.Enumeration<
