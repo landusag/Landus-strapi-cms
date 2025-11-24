@@ -7,7 +7,7 @@ export default {
   async beforeCreate(event) {
     const { data } = event.params;
     if (data.slug) {
-      data.previewUrl = buildPreviewUrl('energy-commentary', data.slug);
+      data.previewUrl = buildPreviewUrl('products', data.slug);
     }
   },
   async beforeUpdate(event) {
@@ -18,7 +18,7 @@ export default {
         slug = await fetchExistingSlug('api::product.product', where.id);
       }
       if (slug) {
-        data.previewUrl = buildPreviewUrl('energy-commentary', slug);
+        data.previewUrl = buildPreviewUrl('products', slug);
       }
     }
   }

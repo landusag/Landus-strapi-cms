@@ -385,6 +385,7 @@ export interface ApiAcreEdgePortfolioAcreEdgePortfolio
     draftAndPublish: true;
   };
   attributes: {
+    button: Schema.Attribute.Component<'shared.button', true>;
     content: Schema.Attribute.Blocks;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
