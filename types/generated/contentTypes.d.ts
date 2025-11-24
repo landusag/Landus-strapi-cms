@@ -516,6 +516,59 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiContactPageContactPage extends Struct.SingleTypeSchema {
+  collectionName: 'contact_pages';
+  info: {
+    displayName: 'ContactPage';
+    pluralName: 'contact-pages';
+    singularName: 'contact-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    blocks: Schema.Attribute.DynamicZone<
+      [
+        'sections.timeline-section',
+        'sections.testimonial-section',
+        'sections.team-section',
+        'sections.table-with-content-section',
+        'sections.resource-list-section',
+        'sections.quick-facts-section',
+        'sections.page-hero-section',
+        'sections.media-teaser-section',
+        'sections.instruction-steps-section',
+        'sections.inquiry-section',
+        'sections.info-cards-section',
+        'sections.hero-section',
+        'sections.faq-section',
+        'sections.expandable-info-section',
+        'sections.difference-section',
+        'sections.content-hub-section',
+        'sections.contact-section',
+        'sections.career-section',
+        'sections.card-section',
+        'sections.acre-edge-portfolio-section',
+      ]
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contact-page.contact-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiFooterFooter extends Struct.SingleTypeSchema {
   collectionName: 'footers';
   info: {
@@ -1531,6 +1584,7 @@ declare module '@strapi/strapi' {
       'api::article.article': ApiArticleArticle;
       'api::categories-page.categories-page': ApiCategoriesPageCategoriesPage;
       'api::category.category': ApiCategoryCategory;
+      'api::contact-page.contact-page': ApiContactPageContactPage;
       'api::footer.footer': ApiFooterFooter;
       'api::global.global': ApiGlobalGlobal;
       'api::header.header': ApiHeaderHeader;

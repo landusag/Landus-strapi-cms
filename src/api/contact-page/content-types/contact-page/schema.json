@@ -1,0 +1,48 @@
+{
+  "kind": "singleType",
+  "collectionName": "contact_pages",
+  "info": {
+    "singularName": "contact-page",
+    "pluralName": "contact-pages",
+    "displayName": "ContactPage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "sections.timeline-section",
+        "sections.testimonial-section",
+        "sections.team-section",
+        "sections.table-with-content-section",
+        "sections.resource-list-section",
+        "sections.quick-facts-section",
+        "sections.page-hero-section",
+        "sections.media-teaser-section",
+        "sections.instruction-steps-section",
+        "sections.inquiry-section",
+        "sections.info-cards-section",
+        "sections.hero-section",
+        "sections.faq-section",
+        "sections.expandable-info-section",
+        "sections.difference-section",
+        "sections.content-hub-section",
+        "sections.contact-section",
+        "sections.career-section",
+        "sections.card-section",
+        "sections.acre-edge-portfolio-section"
+      ]
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_inquiry_sections",
+  "info": {
+    "displayName": "InquirySection"
+  },
+  "options": {},
+  "attributes": {
+    "sectionName": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "component",
+      "component": "shared.theme",
+      "repeatable": false
+    },
+    "headerSection": {
+      "type": "component",
+      "component": "shared.section-header",
+      "repeatable": false
+    },
+    "inquiryCards": {
+      "type": "component",
+      "component": "inquiry.inquiry-cards",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
