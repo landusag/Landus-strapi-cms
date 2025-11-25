@@ -28,6 +28,9 @@
     "description": {
       "type": "text"
     },
+    "videoURL": {
+      "type": "string"
+    },
     "content": {
       "type": "blocks"
     },

@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_sections_execution_steps_sections",
+  "info": {
+    "displayName": "ExecutionStepsSection"
+  },
+  "options": {},
+  "attributes": {
+    "sectionName": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "component",
+      "component": "shared.theme",
+      "repeatable": true
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "button": {
+      "type": "component",
+      "component": "shared.button",
+      "repeatable": true
+    },
+    "executionSteps": {
+      "type": "component",
+      "component": "shared.execution-steps",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
