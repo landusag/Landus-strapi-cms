@@ -22,6 +22,9 @@
       "type": "component",
       "component": "inquiry.contact-items",
       "repeatable": true
+    },
+    "content": {
+      "type": "blocks"
     }
   },
   "config": {}

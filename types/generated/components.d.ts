@@ -104,6 +104,7 @@ export interface InquiryInquiryCards extends Struct.ComponentSchema {
   };
   attributes: {
     contactItems: Schema.Attribute.Component<'inquiry.contact-items', true>;
+    content: Schema.Attribute.Blocks;
     description: Schema.Attribute.Text;
     icon: Schema.Attribute.Media<'images'>;
     title: Schema.Attribute.String;
