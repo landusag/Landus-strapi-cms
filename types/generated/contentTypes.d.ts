@@ -800,6 +800,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.instruction-steps-section',
         'sections.table-with-content-section',
         'sections.acre-edge-portfolio-section',
+        'sections.execution-steps-section',
       ]
     >;
     categories_pages: Schema.Attribute.Relation<
