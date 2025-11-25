@@ -84,6 +84,17 @@ export interface GlobalFooter extends Struct.ComponentSchema {
   attributes: {};
 }
 
+export interface InquiryAddressLink extends Struct.ComponentSchema {
+  collectionName: 'components_inquiry_address_links';
+  info: {
+    displayName: 'AddressLink';
+  };
+  attributes: {
+    address: Schema.Attribute.Text;
+    link: Schema.Attribute.Component<'shared.link', false>;
+  };
+}
+
 export interface InquiryContactItems extends Struct.ComponentSchema {
   collectionName: 'components_inquiry_contact_items';
   info: {
@@ -103,9 +114,12 @@ export interface InquiryInquiryCards extends Struct.ComponentSchema {
     displayName: 'InquiryCards ';
   };
   attributes: {
-    contactItems: Schema.Attribute.Component<'inquiry.contact-items', true>;
+    address: Schema.Attribute.Component<'inquiry.address-link', false>;
     description: Schema.Attribute.Text;
+    email: Schema.Attribute.Email;
     icon: Schema.Attribute.Media<'images'>;
+    link: Schema.Attribute.Component<'shared.link', false>;
+    phone: Schema.Attribute.String;
     title: Schema.Attribute.String;
   };
 }
@@ -941,6 +955,7 @@ declare module '@strapi/strapi' {
       'footer.footer-column': FooterFooterColumn;
       'footer.footer-group': FooterFooterGroup;
       'global.footer': GlobalFooter;
+      'inquiry.address-link': InquiryAddressLink;
       'inquiry.contact-items': InquiryContactItems;
       'inquiry.inquiry-cards': InquiryInquiryCards;
       'navigation.link': NavigationLink;

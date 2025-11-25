@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_inquiry_address_links",
+  "info": {
+    "displayName": "AddressLink"
+  },
+  "options": {},
+  "attributes": {
+    "address": {
+      "type": "text"
+    },
+    "link": {
+      "type": "component",
+      "component": "shared.link",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}
