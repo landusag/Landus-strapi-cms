@@ -302,8 +302,24 @@ export interface SectionsDifferenceSection extends Struct.ComponentSchema {
       > &
       Schema.Attribute.DefaultTo<4>;
     headerSection: Schema.Attribute.Component<'shared.section-header', false>;
+    isHeaderSplit: Schema.Attribute.Boolean;
     sectionName: Schema.Attribute.String;
     theme: Schema.Attribute.Component<'shared.theme', false>;
+  };
+}
+
+export interface SectionsExecutionStepsSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_execution_steps_sections';
+  info: {
+    displayName: 'ExecutionStepsSection';
+  };
+  attributes: {
+    button: Schema.Attribute.Component<'shared.button', true>;
+    description: Schema.Attribute.Blocks;
+    executionSteps: Schema.Attribute.Component<'shared.execution-steps', true>;
+    sectionName: Schema.Attribute.String;
+    theme: Schema.Attribute.Component<'shared.theme', true>;
+    title: Schema.Attribute.String;
   };
 }
 
@@ -630,6 +646,18 @@ export interface SharedDifference extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedExecutionSteps extends Struct.ComponentSchema {
+  collectionName: 'components_shared_execution_steps';
+  info: {
+    displayName: 'ExecutionSteps';
+  };
+  attributes: {
+    description: Schema.Attribute.Blocks;
+    icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SharedExpandableList extends Struct.ComponentSchema {
   collectionName: 'components_shared_expandable_lists';
   info: {
@@ -928,6 +956,7 @@ declare module '@strapi/strapi' {
       'sections.contact-section': SectionsContactSection;
       'sections.content-hub-section': SectionsContentHubSection;
       'sections.difference-section': SectionsDifferenceSection;
+      'sections.execution-steps-section': SectionsExecutionStepsSection;
       'sections.expandable-info-section': SectionsExpandableInfoSection;
       'sections.faq-section': SectionsFaqSection;
       'sections.hero-section': SectionsHeroSection;
@@ -949,6 +978,7 @@ declare module '@strapi/strapi' {
       'shared.careers-info': SharedCareersInfo;
       'shared.contact-detail': SharedContactDetail;
       'shared.difference': SharedDifference;
+      'shared.execution-steps': SharedExecutionSteps;
       'shared.expandable-list': SharedExpandableList;
       'shared.facts': SharedFacts;
       'shared.faq-list': SharedFaqList;
