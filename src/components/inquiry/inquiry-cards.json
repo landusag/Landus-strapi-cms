@@ -18,10 +18,21 @@
     "description": {
       "type": "text"
     },
-    "contactItems": {
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "address": {
       "type": "component",
-      "component": "inquiry.contact-items",
-      "repeatable": true
+      "component": "inquiry.address-link",
+      "repeatable": false
+    },
+    "link": {
+      "type": "component",
+      "component": "shared.link",
+      "repeatable": false
     }
   },
   "config": {}
