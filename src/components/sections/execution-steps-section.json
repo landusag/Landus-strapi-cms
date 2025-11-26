@@ -11,7 +11,7 @@
     "theme": {
       "type": "component",
       "component": "shared.theme",
-      "repeatable": true
+      "repeatable": false
     },
     "title": {
       "type": "string"

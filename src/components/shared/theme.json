@@ -14,6 +14,26 @@
         "dark",
         "bgImage"
       ]
+    },
+    "bgImage": {
+      "type": "media",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "theme"
+            },
+            "bgImage"
+          ]
+        }
+      },
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   },
   "config": {}
