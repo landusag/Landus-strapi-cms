@@ -737,7 +737,10 @@ export interface SharedLink extends Struct.ComponentSchema {
       ['_blank', '_self', '_parent', '_top']
     >;
     text: Schema.Attribute.String;
-    URL: Schema.Attribute.String;
+    URL: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 500;
+      }>;
   };
 }
 
