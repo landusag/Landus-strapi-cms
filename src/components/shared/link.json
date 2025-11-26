@@ -9,8 +9,7 @@
       "type": "string"
     },
     "URL": {
-      "type": "string",
-      "maxLength": 500
+      "type": "text"
     },
     "target": {
       "type": "enumeration",
