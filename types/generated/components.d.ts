@@ -332,7 +332,7 @@ export interface SectionsExecutionStepsSection extends Struct.ComponentSchema {
     description: Schema.Attribute.Blocks;
     executionSteps: Schema.Attribute.Component<'shared.execution-steps', true>;
     sectionName: Schema.Attribute.String;
-    theme: Schema.Attribute.Component<'shared.theme', true>;
+    theme: Schema.Attribute.Component<'shared.theme', false>;
     title: Schema.Attribute.String;
   };
 }
@@ -926,6 +926,7 @@ export interface SharedTheme extends Struct.ComponentSchema {
     displayName: 'Theme';
   };
   attributes: {
+    bgImage: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     theme: Schema.Attribute.Enumeration<
       ['semi_light', 'light', 'dark', 'bgImage']
     > &
