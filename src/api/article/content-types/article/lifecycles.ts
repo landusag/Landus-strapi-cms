@@ -3,10 +3,10 @@ import { convert } from "html-to-text";
 
 function getRoute(categorySlug?: string) {
   return {
-    events: "event",
+    event: "event",
     news: "news",
     podcasts: "podcasts",
-    blogs: "posts",
+    posts: "posts",
   }[categorySlug ?? ""] || "articles";
 }
 
