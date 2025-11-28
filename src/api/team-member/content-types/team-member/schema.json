@@ -39,6 +39,9 @@
     },
     "bio": {
       "type": "blocks"
+    },
+    "previewUrl": {
+      "type": "string"
     }
   }
 }
