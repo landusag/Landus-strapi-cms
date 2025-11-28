@@ -1059,6 +1059,7 @@ export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
       'api::team-member.team-member'
     > &
       Schema.Attribute.Private;
+    previewUrl: Schema.Attribute.String;
     profilePhoto: Schema.Attribute.Media<'images'>;
     publishedAt: Schema.Attribute.DateTime;
     role: Schema.Attribute.String;
