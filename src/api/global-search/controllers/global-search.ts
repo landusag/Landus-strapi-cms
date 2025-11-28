@@ -45,6 +45,14 @@ function deepExtract(node: any, acc: string[]) {
 // Each object defines a collection or single type to be included in global search.
 // For single types, set singleType: true. Specify fields to search and relations to populate.
 const CONTENT_TYPES: any[] = [
+  // Team Member collection
+  {
+    uid: "api::team-member.team-member",
+    type: "team-member",
+    fields: ["fullName", "title", "role"],
+    populate: { profilePhoto: true, team_category: true },
+    url: (entry: any) => entry.previewUrl || `/team-details/${entry.slug}`,
+  },
   // Scholarship Application Page (single type)
   // Article collection
   // Product collection
@@ -208,6 +216,11 @@ export default {
             entry.heading,
             entry.subHeading,
           ];
+          // Add all relevant fields for team-member collection
+          if (cfg.type === "team-member" && entry.fullName) baseTextArr.push(entry.fullName);
+          if (cfg.type === "team-member" && entry.title) baseTextArr.push(entry.title);
+          if (cfg.type === "team-member" && entry.role) baseTextArr.push(entry.role);
+          if (cfg.type === "team-member" && entry.bio) deepExtract(entry.bio, baseTextArr);
           // Add all relevant fields for scholarship-application-page (single type)
           if (cfg.type === "scholarship-application-page" && entry.title) baseTextArr.push(entry.title);
           if (cfg.type === "scholarship-application-page" && entry.intro) baseTextArr.push(entry.intro);
