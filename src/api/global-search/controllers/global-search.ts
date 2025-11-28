@@ -42,7 +42,25 @@ function deepExtract(node: any, acc: string[]) {
 }
 
 // ---------------- Content types config ----------------
+// Each object defines a collection or single type to be included in global search.
+// For single types, set singleType: true. Specify fields to search and relations to populate.
 const CONTENT_TYPES: any[] = [
+  // Scholarship Application Page (single type)
+  // Article collection
+  // Product collection
+  // Acre Edge Portfolio collection
+  // Page collection
+  // Contact Page (single type)
+  // Location Page (single type)
+  // Home Page (single type)
+  {
+    uid: "api::scholarship-application-page.scholarship-application-page",
+    type: "scholarship-application-page",
+    singleType: true,
+    fields: ["title", "intro", "introParagraph", "deadlineNotice", "downloadButtonLabel"],
+    populate: { seo: true },
+    url: (entry: any) => entry?.seo?.canonicalURL || "/scholarship-application",
+  },
   {
     uid: "api::article.article",
     type: "article",
@@ -51,11 +69,49 @@ const CONTENT_TYPES: any[] = [
     url: (entry: any) => entry.previewUrl || `/news/${entry.slug}`,
   },
   {
+    uid: "api::product.product",
+    type: "product",
+    fields: ["title", "description", "slug"],
+    populate: { category: true, image: true },
+    url: (entry: any) => entry.previewUrl || `/products/${entry.slug}`,
+  },
+  {
+    uid: "api::acre-edge-portfolio.acre-edge-portfolio",
+    type: "acre-edge-portfolio",
+    fields: ["title", "description", "slug"],
+    populate: { image: true, products: true, button: true },
+    url: (entry: any) => entry.previewUrl || `/acre-edge-portfolio/${entry.slug}`,
+  },
+  {
     uid: "api::page.page",
     type: "page",
     fields: ["title", "search_text"],
     populate: { seo: true, categories_pages: true, blocks: { populate: "*" } },
     url: (entry: any) => entry?.seo?.canonicalURL || "/", // canonical only per requirement
+  },
+  {
+    uid: "api::contact-page.contact-page",
+    type: "contact-page",
+    singleType: true,
+    fields: ["title"],
+    populate: { seo: true, blocks: { populate: "*" } },
+    url: () => "/contact", // or your actual contact page route
+  },
+  {
+    uid: "api::location-page.location-page",
+    type: "location-page",
+    singleType: true,
+    fields: ["title"],
+    populate: { seo: true, blocks: { populate: "*" }, locations: true },
+    url: (entry: any) => entry?.seo?.canonicalURL || "/locations",
+  },
+  {
+    uid: "api::home.home",
+    type: "home",
+    singleType: true,
+    fields: ["title", "description"],
+    populate: { seo: true, home: { populate: "*" } },
+    url: (entry: any) => entry?.seo?.canonicalURL || "/",
   },
 ];
 
@@ -81,65 +137,102 @@ export default {
 
       const aggregated: any[] = [];
       for (const cfg of CONTENT_TYPES) {
-        const orFilters: any[] = [];
-        for (const field of cfg.fields) {
-          for (const token of tokens) {
-            orFilters.push({ [field]: { $containsi: token } });
-          }
-        }
-        // Debug disabled: uncomment if needed
-        // console.log('Search filters', cfg.uid, JSON.stringify(orFilters));
         let items;
-        try {
-          items = await strapi.entityService.findMany(cfg.uid, {
-            filters: { $or: orFilters },
-            populate: cfg.populate,
-            limit: 100,
-          });
-        } catch (e: any) {
-          if (e?.details?.key === "content") {
-            // Retry without filters (still populate basics)
+        if (cfg.singleType) {
+          // Single type: fetch one
+          const entry = await strapi.entityService.findMany(cfg.uid, { populate: cfg.populate });
+          items = entry ? [entry] : [];
+        } else {
+          const orFilters: any[] = [];
+          for (const field of cfg.fields) {
+            for (const token of tokens) {
+              orFilters.push({ [field]: { $containsi: token } });
+            }
+          }
+          // Debug disabled: uncomment if needed
+          // console.log('Search filters', cfg.uid, JSON.stringify(orFilters));
+          try {
             items = await strapi.entityService.findMany(cfg.uid, {
+              filters: { $or: orFilters },
               populate: cfg.populate,
               limit: 100,
             });
-          } else {
-            throw e;
+          } catch (e: any) {
+            if (e?.details?.key === "content") {
+              // Retry without filters (still populate basics)
+              items = await strapi.entityService.findMany(cfg.uid, {
+                populate: cfg.populate,
+                limit: 100,
+              });
+            } else {
+              throw e;
+            }
+          }
+          // Fallback: if pages came back empty try unfiltered fetch (for stale search_text)
+          if (cfg.type === "page" && items.length === 0) {
+            items = await strapi.entityService.findMany(cfg.uid, {
+              populate: cfg.populate,
+              limit: 200,
+            });
+          }
+          // Article fallback if empty
+          if (cfg.type === "article" && items.length === 0) {
+            items = await strapi.entityService.findMany(cfg.uid, {
+              populate: cfg.populate,
+              limit: 150,
+            });
           }
         }
-        // Fallback: if pages came back empty try unfiltered fetch (for stale search_text)
-        if (cfg.type === "page" && items.length === 0) {
-          items = await strapi.entityService.findMany(cfg.uid, {
-            populate: cfg.populate,
-            limit: 200,
-          });
-        }
-        // Article fallback if empty
-        if (cfg.type === "article" && items.length === 0) {
-          items = await strapi.entityService.findMany(cfg.uid, {
-            populate: cfg.populate,
-            limit: 150,
-          });
-        }
 
-        for (const entry of items) {
-          const displayTitle = entry?.seo?.metaTitle || entry.title;
-          const searchTextRaw = entry.search_text || "";
-          let deepParts: string[] = [];
-          if (cfg.type === "page") deepExtract(entry.blocks, deepParts);
-          // Build base text (search_text first so phrase matches even if not in blocks)
-          const baseText = [
+  // ---- Main search logic for each entry ----
+  for (const entry of items) {
+          let displayTitle = entry?.seo?.metaTitle || entry.title;
+          if (cfg.type === "product") displayTitle = entry.title;
+          let searchTextRaw = "";
+          if (cfg.type === "article" || cfg.type === "page") {
+            searchTextRaw = entry.search_text || "";
+          }
+          let deepParts = [];
+          if (cfg.type === "page" && entry.blocks) deepExtract(entry.blocks, deepParts);
+          if (cfg.type === "product" && entry.content) deepExtract(entry.content, deepParts);
+          if (cfg.type === "acre-edge-portfolio" && entry.content) deepExtract(entry.content, deepParts);
+          if (cfg.type === "contact-page" && entry.blocks) deepExtract(entry.blocks, deepParts);
+          if (cfg.type === "home" && entry.home) deepExtract(entry.home, deepParts);
+          if (cfg.type === "location-page" && entry.blocks) deepExtract(entry.blocks, deepParts);
+          // Build up the base text array for searching. Add extra fields for each type as needed.
+          let baseTextArr = [
             searchTextRaw,
             displayTitle,
             entry?.seo?.metaDescription,
             ...(deepParts || []),
             entry.heading,
             entry.subHeading,
-          ]
-            .filter(Boolean)
-            .join(" ");
+          ];
+          // Add all relevant fields for scholarship-application-page (single type)
+          if (cfg.type === "scholarship-application-page" && entry.title) baseTextArr.push(entry.title);
+          if (cfg.type === "scholarship-application-page" && entry.intro) baseTextArr.push(entry.intro);
+          if (cfg.type === "scholarship-application-page" && entry.introParagraph) baseTextArr.push(entry.introParagraph);
+          if (cfg.type === "scholarship-application-page" && entry.deadlineNotice) baseTextArr.push(entry.deadlineNotice);
+          if (cfg.type === "scholarship-application-page" && entry.downloadButtonLabel) baseTextArr.push(entry.downloadButtonLabel);
+          // Add all relevant fields for other single types and collections
+          if (cfg.type === "scholarship-application-page" && entry.title) baseTextArr.push(entry.title);
+          if (cfg.type === "scholarship-application-page" && entry.intro) baseTextArr.push(entry.intro);
+          if (cfg.type === "scholarship-application-page" && entry.introParagraph) baseTextArr.push(entry.introParagraph);
+          if (cfg.type === "scholarship-application-page" && entry.deadlineNotice) baseTextArr.push(entry.deadlineNotice);
+          if (cfg.type === "scholarship-application-page" && entry.downloadButtonLabel) baseTextArr.push(entry.downloadButtonLabel);
+          if (cfg.type === "product" && entry.description) baseTextArr.push(entry.description);
+          if (cfg.type === "product" && entry.slug) baseTextArr.push(entry.slug);
+          if (cfg.type === "acre-edge-portfolio" && entry.description) baseTextArr.push(entry.description);
+          if (cfg.type === "acre-edge-portfolio" && entry.slug) baseTextArr.push(entry.slug);
+          if (cfg.type === "contact-page" && entry.title) baseTextArr.push(entry.title);
+          if (cfg.type === "home" && entry.title) baseTextArr.push(entry.title);
+          if (cfg.type === "home" && entry.description) baseTextArr.push(entry.description);
+          if (cfg.type === "location-page" && entry.title) baseTextArr.push(entry.title);
+          const baseText = baseTextArr.filter(Boolean).join(" ");
           const combined = normalize(baseText);
-          let matched = tokens.filter((t) => combined.includes(t));
+          // Split normalized base text into words for strict word matching
+          const baseWords = new Set(combined.split(/\s+/));
+          let matched = tokens.filter((t) => baseWords.has(t));
           if (requireAll && matched.length !== tokens.length) continue;
           if (!matched.length) continue;
 
