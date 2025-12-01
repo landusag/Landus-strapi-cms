@@ -45,6 +45,11 @@
       "type": "component",
       "component": "shared.my-account-section",
       "repeatable": false
+    },
+    "quickLinks": {
+      "type": "component",
+      "component": "shared.link",
+      "repeatable": true
     }
   }
 }
