@@ -838,7 +838,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     productSidebar: Schema.Attribute.Component<'product.product-sidebar', true>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'title'>;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
