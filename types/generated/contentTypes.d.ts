@@ -385,6 +385,10 @@ export interface ApiAcreEdgePortfolioAcreEdgePortfolio
     draftAndPublish: true;
   };
   attributes: {
+    backgroundMedia: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    backgroundType: Schema.Attribute.Enumeration<['video', 'image']>;
     button: Schema.Attribute.Component<'shared.button', true>;
     content: Schema.Attribute.Blocks;
     createdAt: Schema.Attribute.DateTime;
@@ -601,33 +605,6 @@ export interface ApiFooterFooter extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
-  collectionName: 'globals';
-  info: {
-    displayName: 'Global';
-    pluralName: 'globals';
-    singularName: 'global';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::global.global'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiHeaderHeader extends Struct.SingleTypeSchema {
   collectionName: 'headers';
   info: {
@@ -646,7 +623,6 @@ export interface ApiHeaderHeader extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    darkLogo: Schema.Attribute.Component<'shared.media-link', false>;
     lightLogo: Schema.Attribute.Component<'shared.media-link', false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -837,6 +813,10 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    backgroundMedia: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    backgroundType: Schema.Attribute.Enumeration<['video', 'image']>;
     category: Schema.Attribute.Relation<
       'manyToOne',
       'api::acre-edge-portfolio.acre-edge-portfolio'
@@ -1591,7 +1571,6 @@ declare module '@strapi/strapi' {
       'api::category.category': ApiCategoryCategory;
       'api::contact-page.contact-page': ApiContactPageContactPage;
       'api::footer.footer': ApiFooterFooter;
-      'api::global.global': ApiGlobalGlobal;
       'api::header.header': ApiHeaderHeader;
       'api::home.home': ApiHomeHome;
       'api::location-page.location-page': ApiLocationPageLocationPage;

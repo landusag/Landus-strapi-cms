@@ -15,9 +15,7 @@
       "type": "enumeration",
       "enum": [
         "_blank",
-        "_self",
-        "_parent",
-        "_top"
+        "_self"
       ]
     },
     "badge": {

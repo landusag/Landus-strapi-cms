@@ -50,6 +50,23 @@
     },
     "postDate": {
       "type": "date"
+    },
+    "backgroundMedia": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "backgroundType": {
+      "type": "enumeration",
+      "enum": [
+        "video",
+        "image"
+      ]
     }
   }
 }
