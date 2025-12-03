@@ -134,9 +134,7 @@ export interface NavigationLink extends Struct.ComponentSchema {
     description: Schema.Attribute.Text;
     icon: Schema.Attribute.Media<'images'>;
     label: Schema.Attribute.String;
-    target: Schema.Attribute.Enumeration<
-      ['_blank', '_self', '_parent', '_top']
-    >;
+    target: Schema.Attribute.Enumeration<['_blank', '_self']>;
     URL: Schema.Attribute.String;
   };
 }
@@ -597,9 +595,7 @@ export interface SharedButton extends Struct.ComponentSchema {
     arrowAlign: Schema.Attribute.Enumeration<['left', 'right']> &
       Schema.Attribute.DefaultTo<'left'>;
     isShowArrow: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    target: Schema.Attribute.Enumeration<
-      ['_blank', '_self', '_parent', '_top']
-    >;
+    target: Schema.Attribute.Enumeration<['_blank', '_self']>;
     text: Schema.Attribute.String;
     URL: Schema.Attribute.String;
     variant: Schema.Attribute.Enumeration<
@@ -763,9 +759,7 @@ export interface SharedLink extends Struct.ComponentSchema {
     displayName: 'Link';
   };
   attributes: {
-    target: Schema.Attribute.Enumeration<
-      ['_blank', '_self', '_parent', '_top']
-    >;
+    target: Schema.Attribute.Enumeration<['_blank', '_self']>;
     text: Schema.Attribute.String;
     URL: Schema.Attribute.Text;
   };

@@ -31,11 +31,6 @@
       "component": "shared.media-link",
       "repeatable": false
     },
-    "darkLogo": {
-      "type": "component",
-      "component": "shared.media-link",
-      "repeatable": false
-    },
     "TopBar": {
       "type": "component",
       "component": "navigation.top-bar",
