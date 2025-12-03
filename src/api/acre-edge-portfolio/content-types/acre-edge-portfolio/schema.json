@@ -47,6 +47,23 @@
       "type": "component",
       "component": "shared.button",
       "repeatable": true
+    },
+    "backgroundMedia": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "backgroundType": {
+      "type": "enumeration",
+      "enum": [
+        "video",
+        "image"
+      ]
     }
   }
 }
