@@ -18,14 +18,14 @@ module.exports = {
 
             draft: {
               url: (entity) => {
-                const site = process.env.FRONTEND_URL || 'https://devwebsite.landus.ag';
+                const site = process.env.FRONTEND_URL || 'https://landus.ag';
                 return `${site}/${entity.previewUrl}`;
               },
             },
 
             published: {
               url: (entity) => {
-                const site = process.env.FRONTEND_URL || 'https://devwebsite.landus.ag';
+                const site = process.env.FRONTEND_URL || 'https://landus.ag';
                 return `${site}/${entity.previewUrl}`;
               },
             },
