@@ -2,7 +2,7 @@
 // Ensures base URL normalization, slug encoding, and consistent path output.
 
 const getFrontendBase = (): string => {
-  const env = process.env.FRONTEND_URL?.trim() || 'https://devwebsite.landus.ag';
+  const env = process.env.FRONTEND_URL?.trim() || 'https://landus.ag';
   return env.replace(/\/+$/, ''); // remove trailing slashes
 };
 
