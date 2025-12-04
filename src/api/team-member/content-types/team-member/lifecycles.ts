@@ -1,5 +1,5 @@
 function buildPreviewUrl(entity: any) {
-  const site = process.env.FRONTEND_URL || "https://devwebsite.landus.ag";
+  const site = process.env.FRONTEND_URL || "https://landus.ag";
   return `${site}/team-details/${entity.slug}`;
 }
 

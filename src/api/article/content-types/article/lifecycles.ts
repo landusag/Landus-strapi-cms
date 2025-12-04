@@ -74,7 +74,7 @@ async function generatePreviewUrl(event) {
   const articleAny = article as any;
   const categorySlug = articleAny.category?.slug?.toLowerCase();
   const route = getRoute(categorySlug);
-  const site = process.env.FRONTEND_URL || "https://devwebsite.landus.ag";
+  const site = process.env.FRONTEND_URL || "https://landus.ag";
   const previewUrl = `${site}/${route}/${articleAny.slug}`;
   if (articleAny.previewUrl === previewUrl) return; // Avoid infinite loop
   await strapi.entityService.update("api::article.article", articleAny.id, { data: { previewUrl } });
