@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const ExcelJS = require("exceljs");
 
@@ -35,9 +35,11 @@ async function fetchAllDocuments(uid) {
 module.exports = {
   async exportExcel(ctx) {
     try {
-      const COLLECTION_UID = 'api::scholarship-application.scholarship-application';
+      const COLLECTION_UID =
+        "api::scholarship-application.scholarship-application";
 
-      const baseUrl = strapi.config.get("server.url") || "http://localhost:1337";
+      const baseUrl =
+        strapi.config.get("server.url") || "http://localhost:1337";
 
       // 🔥 Fetch ALL entries (100, 500, 5000, unlimited...)
       const entries = await fetchAllDocuments(COLLECTION_UID);
@@ -91,7 +93,7 @@ module.exports = {
           ? `${baseUrl}${item.referenceLetter.url}`
           : "";
 
-        sheet.addRow([
+        const dataRow = sheet.addRow([
           item.id,
           item.firstName || "",
           item.lastName || "",
@@ -100,6 +102,8 @@ module.exports = {
           applicationUrl,
           referenceUrl,
         ]);
+
+        dataRow.height = 22; // set row height for each data row
       });
 
       // Auto column width
@@ -115,10 +119,15 @@ module.exports = {
       // Generate file
       const buffer = await workbook.xlsx.writeBuffer();
 
-      ctx.set("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-      ctx.set("Content-Disposition", "attachment; filename=scholarship_export.xlsx");
+      ctx.set(
+        "Content-Type",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      );
+      ctx.set(
+        "Content-Disposition",
+        "attachment; filename=scholarship_export.xlsx"
+      );
       ctx.body = buffer;
-
     } catch (err) {
       console.error("EXPORT ERROR:", err);
       ctx.throw(500, "Failed to generate Excel");
