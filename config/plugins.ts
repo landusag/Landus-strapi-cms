@@ -42,30 +42,30 @@ module.exports = ({ env }) => ({
     },
   },
 
-  // 📧 Office365 Email Config (Nodemailer)
+  // Office365 Email Config (Nodemailer)
   email: {
     config: {
       provider: "nodemailer",
       providerOptions: {
         host: "smtp.office365.com",
-        port: 587,
-        secure: false, // Office365 requires STARTTLS, so false
-        auth: {
-          user: "cde-noreply@landuscooperative.onmicrosoft.com", // EmailUsername
-          pass: "btg4zmh-fwt!GHD2qen", // EmailPassword
-        },
-        tls: {
-          ciphers: "SSLv3",
-          rejectUnauthorized: false,
-        },
+      port: 587,
+      secure: false,
+      auth: {
+        user: "cde-noreply@landuscooperative.onmicrosoft.com",
+        pass: "btg4zmh-fwt!GHD2qen",
       },
-      settings: {
-        defaultFrom: "NoReply@landus.ag", // DefaultSenderEmail
-        defaultReplyTo: "NoReply@landus.ag",
-        defaultFromName: "Landus Team", // DefaultSenderName
+      tls: {
+        ciphers: "SSLv3",
+        rejectUnauthorized: false,
       },
     },
+    settings: {
+      defaultFrom: `"Landus Team" <cde-noreply@landuscooperative.onmicrosoft.com>`,
+      defaultReplyTo: "NoReply@landus.ag",
+    },
   },
+},
+
 
    'scholarship-export': {
     enabled: true,
