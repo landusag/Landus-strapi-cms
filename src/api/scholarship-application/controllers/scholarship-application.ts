@@ -38,7 +38,8 @@ export default factories.createCoreController(
           : null;
 
         // ---------------------- Admin Email HTML ----------------------
-        await strapi.plugins.email.services.email.send({
+  // Strapi v4 email service
+  await strapi.plugin("email").service("email").send({
           to: "siva.magiri@landus.ag",
           subject: "New Scholarship Application Received",
           html: `
@@ -152,7 +153,7 @@ export default factories.createCoreController(
 
         // ---------------------- Confirmation Email ----------------------
         if (email) {
-          await strapi.plugins.email.services.email.send({
+          await strapi.plugin("email").service("email").send({
             to: email,
             subject: "Your Scholarship Application Was Received",
             html: `
@@ -178,6 +179,7 @@ export default factories.createCoreController(
 </table>
 `,
           });
+          console.log("✅ Confirmation email queued to:", email);
         }
 
       } catch (err) {
