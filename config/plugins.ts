@@ -66,4 +66,9 @@ module.exports = ({ env }) => ({
       },
     },
   },
+
+   'scholarship-export': {
+    enabled: true,
+    resolve: './src/plugins/scholarship-export',
+  },
 });

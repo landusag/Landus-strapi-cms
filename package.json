@@ -21,6 +21,8 @@
     "@strapi/provider-email-nodemailer": "^5.31.3",
     "@strapi/strapi": "5.23.3",
     "better-sqlite3": "11.3.0",
+    "csv-stringify": "^6.6.0",
+    "exceljs": "^4.4.0",
     "html-to-text": "^9.0.5",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
