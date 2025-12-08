@@ -3,7 +3,6 @@ import { factories } from "@strapi/strapi";
 export default factories.createCoreController(
   "api::scholarship-application.scholarship-application",
   ({ strapi }) => ({
-
     async create(ctx) {
       // Create entry
       const response = await super.create(ctx);
@@ -26,7 +25,8 @@ export default factories.createCoreController(
 
         // Media extraction
         const baseUrl = process.env.STRAPI_URL || "http://localhost:1337";
-        const logoUrl = "https://proper-strength-b118ff89b5.media.strapiapp.com/landus_logo_6547c90a69.svg";
+        const logoUrl =
+          "https://proper-strength-b118ff89b5.media.strapiapp.com/landus_logo_6547c90a69.svg";
         console.log("LOGO URL:", logoUrl);
 
         const appFileUrl = entry.applicationFile?.url
@@ -38,11 +38,14 @@ export default factories.createCoreController(
           : null;
 
         // ---------------------- Admin Email HTML ----------------------
-  // Strapi v4 email service
-  await strapi.plugin("email").service("email").send({
-          to: "siva.magiri@landus.ag",
-          subject: "New Scholarship Application Received",
-          html: `
+        // Strapi v4 email service
+        await strapi
+          .plugin("email")
+          .service("email")
+          .send({
+            to: "siva.magiri@landus.ag",
+            subject: "New Scholarship Application Received",
+            html: `
 <div style="margin:0;padding:0;background:#F5F5F5;width:100%;font-family:Arial,Helvetica,sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" style="padding:40px 0;">
     <tr>
@@ -145,18 +148,24 @@ export default factories.createCoreController(
 </div>
 
 `,
-          attachments: [
-            appFileUrl && { filename: "Application.pdf", path: appFileUrl },
-            refFileUrl && { filename: "ReferenceLetter.pdf", path: refFileUrl },
-          ].filter(Boolean),
-        });
+            attachments: [
+              appFileUrl && { filename: "Application.pdf", path: appFileUrl },
+              refFileUrl && {
+                filename: "ReferenceLetter.pdf",
+                path: refFileUrl,
+              },
+            ].filter(Boolean),
+          });
 
         // ---------------------- Confirmation Email ----------------------
         if (email) {
-          await strapi.plugin("email").service("email").send({
-            to: email,
-            subject: "Your Scholarship Application Was Received",
-            html: `
+          await strapi
+            .plugin("email")
+            .service("email")
+            .send({
+              to: email,
+              subject: "Your Scholarship Application Was Received",
+              html: `
 <table width="100%" cellpadding="0" cellspacing="0" style="background:#f2f2f2; padding:20px; font-family: Arial;">
   <tr>
     <td align="center">
@@ -178,16 +187,14 @@ export default factories.createCoreController(
   </tr>
 </table>
 `,
-          });
+            });
           console.log("✅ Confirmation email queued to:", email);
         }
-
       } catch (err) {
         console.error("❌ Email sending error:", err);
       }
 
       return response;
     },
-
   })
 );
