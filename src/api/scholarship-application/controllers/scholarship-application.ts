@@ -33,17 +33,19 @@ export default factories.createCoreController(
         const getFileUrl = (file: any) => {
           if (!file?.url) return null;
 
-          // If URL starts with http, it's already absolute → return as is
           if (file.url.startsWith("http")) {
-            return file.url;
+            return file.url; // Strapi Cloud absolute URL
           }
 
-          // Otherwise prepend STRAPI_URL
-          return `${baseUrl}${file.url}`;
+          return `${baseUrl}${file.url}`; // Local/uploads URL
         };
 
         const appFileUrl = getFileUrl(entry.applicationFile);
         const refFileUrl = getFileUrl(entry.referenceLetter);
+
+        console.log("APP FILE DEV URL:", appFileUrl);
+        console.log("REF FILE DEV URL:", refFileUrl);
+
         const adminEmails = process.env.SCHOLARSHIP_ADMIN_EMAILS?.split(
           ","
         ).map((e) => e.trim());

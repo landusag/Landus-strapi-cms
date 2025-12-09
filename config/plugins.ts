@@ -38,28 +38,28 @@ module.exports = ({ env }) => ({
   },
 
   //  EMAIL CONFIG NOW USING ENV VARIABLES
-  email: {
-    config: {
-      provider: "nodemailer",
-      providerOptions: {
-        host: env("SMTP_HOST", "smtp.office365.com"),
-        port: env.int("SMTP_PORT", 587),
-        secure: false,
-        auth: {
-          user: env("SMTP_USERNAME"),
-          pass: env("SMTP_PASSWORD"),
-        },
-        tls: {
-          ciphers: "SSLv3",
-          rejectUnauthorized: false,
-        },
+email: {
+  config: {
+    provider: "nodemailer",
+    providerOptions: {
+      host: env("SMTP_HOST"),
+      port: env.int("SMTP_PORT"),
+      secure: false,
+      auth: {
+        user: env("SMTP_USERNAME"),
+        pass: env("SMTP_PASSWORD"),
       },
-      settings: {
-        defaultFrom: env("SMTP_DEFAULT_FROM"),
-        defaultReplyTo: env("SMTP_DEFAULT_REPLY_TO"),
+      tls: {
+        rejectUnauthorized: false,
       },
     },
+    settings: {
+      defaultFrom: env("EMAIL_FROM"),
+      defaultReplyTo: env("EMAIL_REPLY_TO"),
+    },
   },
+},
+
 
   "scholarship-export": {
     enabled: true,
