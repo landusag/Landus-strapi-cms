@@ -57,11 +57,13 @@ export default factories.createCoreController(
           .filter(Boolean);
 
         // Cloud Mailer requires a plain email address in `from`
-        const rawFrom = process.env.EMAIL_FROM || "cde-noreply@landuscooperative.onmicrosoft.com";
+        const rawFrom =
+          process.env.EMAIL_FROM ||
+          "cde-noreply@landuscooperative.onmicrosoft.com";
         const fromAddressMatch = rawFrom.match(/<([^>]+)>/);
         const fromAddress = fromAddressMatch ? fromAddressMatch[1] : rawFrom;
-
-  // Use URL attachments to keep payload small for Cloud Mailer / SMTP
+console.log("FROM ADDRESS======>:", fromAddress);
+        // Use URL attachments to keep payload small for Cloud Mailer / SMTP
 
         // ---------------------- Admin Email HTML ----------------------
         // Strapi v4 email service
@@ -184,14 +186,23 @@ export default factories.createCoreController(
           });
           // Send individually to reduce provider errors
           for (const recipient of adminEmails) {
-            const perRecipientPayload = { ...adminBasePayload, to: recipient } as any;
+            const perRecipientPayload = {
+              ...adminBasePayload,
+              to: recipient,
+            } as any;
             try {
-              await strapi.plugin("email").service("email").send(perRecipientPayload);
+              await strapi
+                .plugin("email")
+                .service("email")
+                .send(perRecipientPayload);
               console.log(`✅ Admin email queued to: ${recipient}`);
             } catch (e: any) {
               const status = e?.response?.status;
               const data = e?.response?.data;
-              console.error(`❌ Admin email failed to ${recipient}`, { status, data });
+              console.error(`❌ Admin email failed to ${recipient}`, {
+                status,
+                data,
+              });
               // continue to next recipient
             }
           }
@@ -203,12 +214,12 @@ export default factories.createCoreController(
 
         // ---------------------- Confirmation Email ----------------------
         if (email) {
-      await strapi
+          await strapi
             .plugin("email")
             .service("email")
             .send({
-        to: email,
-        from: fromAddress,
+              to: email,
+              from: fromAddress,
               subject: "Your Scholarship Application Was Received",
               text: `Thank you, ${firstName}! Your scholarship application was received.\n\nName: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone}`,
               html: `
