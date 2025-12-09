@@ -119,14 +119,17 @@ module.exports = {
       // Generate file
       const buffer = await workbook.xlsx.writeBuffer();
 
+      // Ensure correct headers so the browser/download uses .xlsx (not .csv)
       ctx.set(
         "Content-Type",
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
       );
       ctx.set(
         "Content-Disposition",
-        "attachment; filename=scholarship_export.xlsx"
+        // Force a consistent filename expected by Excel
+        "attachment; filename=scholarships.xlsx"
       );
+      ctx.set("Content-Length", String(buffer.length));
       ctx.body = buffer;
     } catch (err) {
       console.error("EXPORT ERROR:", err);

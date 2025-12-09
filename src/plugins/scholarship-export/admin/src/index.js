@@ -18,6 +18,18 @@ const plugin = {
       cm.injectComponent("listView", "actions", {
         name: "scholarship-export-button",
         Component: ExportButton,
+        // Only show on Scholarship Application collection.
+        // Support different CM contexts by checking multiple props.
+        shouldDisplay: (props = {}) => {
+          const targetUid =
+            "api::scholarship-application.scholarship-application";
+          const uid =
+            props.displayedContentType?.uid ||
+            props.layout?.uid ||
+            props.contentType?.uid ||
+            props.displayedCollection?.uid;
+          return uid === targetUid;
+        },
       });
     }
   },
