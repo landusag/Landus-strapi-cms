@@ -24,7 +24,12 @@ export default factories.createCoreController(
         const phone = entry.phoneNumber;
 
         // Media extraction
-        const baseUrl = process.env.STRAPI_URL || "http://localhost:1337";
+        // Build absolute URLs for attachments (works locally and in production)
+        const baseUrl =
+          (strapi.config.get("server.url") as string) ||
+          process.env.STRAPI_URL ||
+          process.env.PUBLIC_URL ||
+          "http://localhost:1337";
         const logoUrl =
           "https://proper-strength-b118ff89b5.media.strapiapp.com/landus_logo_6547c90a69.svg";
         console.log("LOGO URL:", logoUrl);
@@ -46,17 +51,22 @@ export default factories.createCoreController(
         console.log("APP FILE DEV URL:", appFileUrl);
         console.log("REF FILE DEV URL:", refFileUrl);
 
-        const adminEmails = process.env.SCHOLARSHIP_ADMIN_EMAILS?.split(
-          ","
-        ).map((e) => e.trim());
+        const adminEmails = (process.env.SCHOLARSHIP_ADMIN_EMAILS || "")
+          .split(",")
+          .map((e) => e.trim())
+          .filter(Boolean);
 
         // ---------------------- Admin Email HTML ----------------------
         // Strapi v4 email service
-        await strapi
-          .plugin("email")
-          .service("email")
-          .send({
+        if (adminEmails.length) {
+          await strapi
+            .plugin("email")
+            .service("email")
+            .send({
             to: adminEmails,
+            from:
+              process.env.EMAIL_FROM ||
+              "no-reply@landuscooperative.com",
             subject: "New Scholarship Application Received",
             html: `
 <div style="margin:0;padding:0;background:#F5F5F5;width:100%;font-family:Arial,Helvetica,sans-serif;">
@@ -169,6 +179,12 @@ export default factories.createCoreController(
               },
             ].filter(Boolean),
           });
+          console.log("✅ Admin email queued to:", adminEmails);
+        } else {
+          console.warn(
+            "⚠️ SCHOLARSHIP_ADMIN_EMAILS is empty – admin notification skipped"
+          );
+        }
 
         // ---------------------- Confirmation Email ----------------------
         if (email) {
@@ -177,6 +193,9 @@ export default factories.createCoreController(
             .service("email")
             .send({
               to: email,
+              from:
+                process.env.EMAIL_FROM ||
+                "no-reply@landuscooperative.com",
               subject: "Your Scholarship Application Was Received",
               html: `
 <table width="100%" cellpadding="0" cellspacing="0" style="background:#f2f2f2; padding:20px; font-family: Arial;">

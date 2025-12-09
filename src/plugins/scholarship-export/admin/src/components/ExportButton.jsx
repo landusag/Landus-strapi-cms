@@ -1,7 +1,19 @@
 import React, { useState } from 'react';
 import exportRequests from '../api/export';
 
-const ExportButton = () => {
+const ExportButton = (props = {}) => {
+  // Hide button unless we are on Scholarship Applications list view
+  const targetUid = 'api::scholarship-application.scholarship-application';
+  const uid =
+    props.displayedContentType?.uid ||
+    props.layout?.uid ||
+    props.contentType?.uid ||
+    props.displayedCollection?.uid;
+  const pathMatch =
+    typeof window !== 'undefined' &&
+    window.location?.pathname?.includes(targetUid);
+  const isScholarship = uid === targetUid || pathMatch;
+  if (!isScholarship) return null;
   const [loading, setLoading] = useState(false);
 
   const handleExport = async () => {
@@ -10,15 +22,26 @@ const ExportButton = () => {
 
       const res = await exportRequests.exportScholarships();
 
-      // Create a URL for the downloaded blob (CSV)
-      const blob = new Blob([res.data], { type: 'text/csv;charset=utf-8;' });
+      // Try to read filename from Content-Disposition header
+      const cd = res.headers && res.headers['content-disposition'];
+      let filename = 'scholarships.xlsx';
+      if (cd) {
+        const match = cd.match(/filename\*=UTF-8''([^;]+)|filename=([^;]+)/i);
+        const raw = (match && (match[1] || match[2]))?.replace(/"/g, '');
+        if (raw) filename = decodeURIComponent(raw);
+      }
+
+      // Create a URL for the downloaded blob (XLSX)
+      const blob = new Blob([res.data], {
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      });
       const url = window.URL.createObjectURL(blob);
 
       const link = document.createElement('a');
       link.href = url;
 
-      // File name — adjust as you like
-      link.setAttribute('download', 'scholarships-export.csv');
+  // Use server-provided filename; fallback above
+  link.setAttribute('download', filename);
       
       document.body.appendChild(link);
       link.click();
