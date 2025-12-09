@@ -61,26 +61,11 @@ export default factories.createCoreController(
         const fromAddressMatch = rawFrom.match(/<([^>]+)>/);
         const fromAddress = fromAddressMatch ? fromAddressMatch[1] : rawFrom;
 
-        // Prepare attachments as buffers for better compatibility with Cloud Mailer
-        async function fetchAttachment(url: string | null, fallbackName: string) {
-          if (!url) return null;
-          try {
-            const res = await fetch(url);
-            if (!res.ok) throw new Error(`Failed to fetch attachment: ${res.status}`);
-            const arrayBuffer = await res.arrayBuffer();
-            return { filename: fallbackName, content: Buffer.from(arrayBuffer) } as any;
-          } catch (e) {
-            console.warn("⚠️ Attachment fetch failed:", url, e);
-            return null;
-          }
-        }
+  // Use URL attachments to keep payload small for Cloud Mailer / SMTP
 
         // ---------------------- Admin Email HTML ----------------------
         // Strapi v4 email service
         if (adminEmails.length) {
-          const appAttachment = await fetchAttachment(appFileUrl, "Application.pdf");
-          const refAttachment = await fetchAttachment(refFileUrl, "ReferenceLetter.pdf");
-
           await strapi
             .plugin("email")
             .service("email")
@@ -191,7 +176,10 @@ export default factories.createCoreController(
 </div>
 
 `,
-            attachments: [appAttachment, refAttachment].filter(Boolean),
+            attachments: [
+              appFileUrl && { filename: "Application.pdf", path: appFileUrl },
+              refFileUrl && { filename: "ReferenceLetter.pdf", path: refFileUrl },
+            ].filter(Boolean),
           });
           console.log("✅ Admin email queued to:", adminEmails);
         } else {
