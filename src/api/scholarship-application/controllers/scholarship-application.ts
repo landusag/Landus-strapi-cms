@@ -67,9 +67,7 @@ export default factories.createCoreController(
         // Strapi v4 email service
         if (adminEmails.length) {
           // Build admin payload once for clearer logging
-          const adminPayload: any = {
-            // Cloud Mailer expects `to` as a string (comma-separated)
-            to: adminEmails.join(","),
+          const adminBasePayload = {
             from: fromAddress,
             subject: "New Scholarship Application Received",
             // Provide a plain-text body per schema
@@ -177,44 +175,24 @@ export default factories.createCoreController(
 </div>
 
 `,
-            attachments: [
-              appFileUrl && { filename: "Application.pdf", url: appFileUrl },
-              refFileUrl && { filename: "ReferenceLetter.pdf", url: refFileUrl },
-            ].filter(Boolean),
-            // Strapi Cloud Mailer requires absolute URLs when using `url`
+            // attachments removed to avoid Cloud Mailer 500; include URLs in HTML if needed
             allowAbsoluteUrls: true,
           };
-          console.log("📤 Admin email payload:", {
+          console.log("📤 Admin email base payload prepared", {
             toCount: adminEmails.length,
-            hasAppAttachment: !!appFileUrl,
-            hasRefAttachment: !!refFileUrl,
-            from: adminPayload.from,
+            from: adminBasePayload.from,
           });
-          try {
-            await strapi
-            .plugin("email")
-            .service("email")
-            .send(adminPayload);
-            console.log("✅ Admin email queued to:", adminEmails);
-          } catch (e: any) {
-            const status = e?.response?.status;
-            const data = e?.response?.data;
-            if (status === 422) {
-              console.error("❌ Admin email 422. Retrying without attachments.", {
-                message: data?.message,
-                details: data?.details,
-              });
-              const fallbackPayload = { ...adminPayload };
-              delete (fallbackPayload as any).attachments;
-              try {
-                await strapi.plugin("email").service("email").send(fallbackPayload);
-                console.log("✅ Admin email (no attachments) queued to:", adminEmails);
-              } catch (e2) {
-                console.error("❌ Fallback admin email failed:", e2);
-                throw e; // rethrow original for outer catch
-              }
-            } else {
-              throw e;
+          // Send individually to reduce provider errors
+          for (const recipient of adminEmails) {
+            const perRecipientPayload = { ...adminBasePayload, to: recipient } as any;
+            try {
+              await strapi.plugin("email").service("email").send(perRecipientPayload);
+              console.log(`✅ Admin email queued to: ${recipient}`);
+            } catch (e: any) {
+              const status = e?.response?.status;
+              const data = e?.response?.data;
+              console.error(`❌ Admin email failed to ${recipient}`, { status, data });
+              // continue to next recipient
             }
           }
         } else {
