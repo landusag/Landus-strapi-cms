@@ -68,9 +68,12 @@ export default factories.createCoreController(
         if (adminEmails.length) {
           // Build admin payload once for clearer logging
           const adminPayload: any = {
-            to: adminEmails,
+            // Cloud Mailer expects `to` as a string (comma-separated)
+            to: adminEmails.join(","),
             from: fromAddress,
             subject: "New Scholarship Application Received",
+            // Provide a plain-text body per schema
+            text: `New Scholarship Application\nName: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone}\nApplication: ${appFileUrl ? "attached" : "missing"}\nReference: ${refFileUrl ? "attached" : "missing"}`,
             html: `
 <div style="margin:0;padding:0;background:#F5F5F5;width:100%;font-family:Arial,Helvetica,sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" style="padding:40px 0;">
@@ -182,7 +185,7 @@ export default factories.createCoreController(
             allowAbsoluteUrls: true,
           };
           console.log("📤 Admin email payload:", {
-            toCount: adminPayload.to.length,
+            toCount: adminEmails.length,
             hasAppAttachment: !!appFileUrl,
             hasRefAttachment: !!refFileUrl,
             from: adminPayload.from,
