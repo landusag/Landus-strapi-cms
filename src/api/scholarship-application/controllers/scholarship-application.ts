@@ -28,14 +28,25 @@ export default factories.createCoreController(
         const logoUrl =
           "https://proper-strength-b118ff89b5.media.strapiapp.com/landus_logo_6547c90a69.svg";
         console.log("LOGO URL:", logoUrl);
+        console.log("Application File URL:", entry.applicationFile?.url);
 
-        const appFileUrl = entry.applicationFile?.url
-          ? baseUrl + entry.applicationFile.url
-          : null;
+        const getFileUrl = (file: any) => {
+          if (!file?.url) return null;
 
-        const refFileUrl = entry.referenceLetter?.url
-          ? baseUrl + entry.referenceLetter.url
-          : null;
+          // If URL starts with http, it's already absolute → return as is
+          if (file.url.startsWith("http")) {
+            return file.url;
+          }
+
+          // Otherwise prepend STRAPI_URL
+          return `${baseUrl}${file.url}`;
+        };
+
+        const appFileUrl = getFileUrl(entry.applicationFile);
+        const refFileUrl = getFileUrl(entry.referenceLetter);
+        const adminEmails = process.env.SCHOLARSHIP_ADMIN_EMAILS?.split(
+          ","
+        ).map((e) => e.trim());
 
         // ---------------------- Admin Email HTML ----------------------
         // Strapi v4 email service
@@ -43,7 +54,7 @@ export default factories.createCoreController(
           .plugin("email")
           .service("email")
           .send({
-            to: "siva.magiri@landus.ag",
+            to: adminEmails,
             subject: "New Scholarship Application Received",
             html: `
 <div style="margin:0;padding:0;background:#F5F5F5;width:100%;font-family:Arial,Helvetica,sans-serif;">
