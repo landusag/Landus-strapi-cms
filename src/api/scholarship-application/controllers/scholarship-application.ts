@@ -66,10 +66,8 @@ export default factories.createCoreController(
         // ---------------------- Admin Email HTML ----------------------
         // Strapi v4 email service
         if (adminEmails.length) {
-          await strapi
-            .plugin("email")
-            .service("email")
-            .send({
+          // Build admin payload once for clearer logging
+          const adminPayload: any = {
             to: adminEmails,
             from: fromAddress,
             subject: "New Scholarship Application Received",
@@ -182,8 +180,40 @@ export default factories.createCoreController(
             ].filter(Boolean),
             // Strapi Cloud Mailer requires absolute URLs when using `url`
             allowAbsoluteUrls: true,
+          };
+          console.log("📤 Admin email payload:", {
+            toCount: adminPayload.to.length,
+            hasAppAttachment: !!appFileUrl,
+            hasRefAttachment: !!refFileUrl,
+            from: adminPayload.from,
           });
-          console.log("✅ Admin email queued to:", adminEmails);
+          try {
+            await strapi
+            .plugin("email")
+            .service("email")
+            .send(adminPayload);
+            console.log("✅ Admin email queued to:", adminEmails);
+          } catch (e: any) {
+            const status = e?.response?.status;
+            const data = e?.response?.data;
+            if (status === 422) {
+              console.error("❌ Admin email 422. Retrying without attachments.", {
+                message: data?.message,
+                details: data?.details,
+              });
+              const fallbackPayload = { ...adminPayload };
+              delete (fallbackPayload as any).attachments;
+              try {
+                await strapi.plugin("email").service("email").send(fallbackPayload);
+                console.log("✅ Admin email (no attachments) queued to:", adminEmails);
+              } catch (e2) {
+                console.error("❌ Fallback admin email failed:", e2);
+                throw e; // rethrow original for outer catch
+              }
+            } else {
+              throw e;
+            }
+          }
         } else {
           console.warn(
             "⚠️ SCHOLARSHIP_ADMIN_EMAILS is empty – admin notification skipped"
@@ -224,8 +254,18 @@ export default factories.createCoreController(
             });
           console.log(" Confirmation email queued to:", email);
         }
-      } catch (err) {
-        console.error(" Email sending error:", err);
+      } catch (err: any) {
+        // Surface Cloud Mailer 422 details clearly
+        const status = err?.response?.status;
+        const data = err?.response?.data;
+        if (status === 422) {
+          console.error("❌ Cloud Mailer validation failed (422). Details:", {
+            message: data?.message,
+            details: data?.details,
+          });
+        } else {
+          console.error(" Email sending error:", err);
+        }
       }
 
       return response;
