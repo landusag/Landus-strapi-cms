@@ -1,4 +1,5 @@
-module.exports = ({ env }) => ({
+// config/env/production/plugins.ts
+export default ({ env }) => ({
   email: {
     config: {
       provider: 'nodemailer',
