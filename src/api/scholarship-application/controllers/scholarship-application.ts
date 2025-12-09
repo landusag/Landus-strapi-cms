@@ -57,7 +57,7 @@ export default factories.createCoreController(
           .filter(Boolean);
 
         // Cloud Mailer requires a plain email address in `from`
-        const rawFrom = process.env.EMAIL_FROM || "no-reply@landuscooperative.com";
+        const rawFrom = process.env.EMAIL_FROM || "cde-noreply@landuscooperative.onmicrosoft.com";
         const fromAddressMatch = rawFrom.match(/<([^>]+)>/);
         const fromAddress = fromAddressMatch ? fromAddressMatch[1] : rawFrom;
 
