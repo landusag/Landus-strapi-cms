@@ -177,9 +177,11 @@ export default factories.createCoreController(
 
 `,
             attachments: [
-              appFileUrl && { filename: "Application.pdf", path: appFileUrl },
-              refFileUrl && { filename: "ReferenceLetter.pdf", path: refFileUrl },
+              appFileUrl && { filename: "Application.pdf", url: appFileUrl },
+              refFileUrl && { filename: "ReferenceLetter.pdf", url: refFileUrl },
             ].filter(Boolean),
+            // Strapi Cloud Mailer requires absolute URLs when using `url`
+            allowAbsoluteUrls: true,
           });
           console.log("✅ Admin email queued to:", adminEmails);
         } else {
