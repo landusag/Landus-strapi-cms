@@ -7,7 +7,6 @@ module.exports = ({ env }) => ({
     },
   },
 
-  // Preview URL config (your existing setup)
   "content-manager": {
     enabled: true,
     config: {
@@ -16,16 +15,12 @@ module.exports = ({ env }) => ({
           {
             uid: "api::article.article",
             draft: {
-              url: (entity) => {
-                const site = env("FRONTEND_URL", "https://landus.ag");
-                return `${site}/${entity.previewUrl}`;
-              },
+              url: (entity) =>
+                `${env("FRONTEND_URL", "https://landus.ag")}/${entity.previewUrl}`,
             },
             published: {
-              url: (entity) => {
-                const site = env("FRONTEND_URL", "https://landus.ag");
-                return `${site}/${entity.previewUrl}`;
-              },
+              url: (entity) =>
+                `${env("FRONTEND_URL", "https://landus.ag")}/${entity.previewUrl}`,
             },
           },
         ],
@@ -42,33 +37,32 @@ module.exports = ({ env }) => ({
     },
   },
 
-  // Office365 Email Config (Nodemailer)
+  //  EMAIL CONFIG NOW USING ENV VARIABLES
   email: {
     config: {
       provider: "nodemailer",
       providerOptions: {
-        host: "smtp.office365.com",
-      port: 587,
-      secure: false,
-      auth: {
-        user: "cde-noreply@landuscooperative.onmicrosoft.com",
-        pass: "btg4zmh-fwt!GHD2qen",
+        host: env("SMTP_HOST", "smtp.office365.com"),
+        port: env.int("SMTP_PORT", 587),
+        secure: false,
+        auth: {
+          user: env("SMTP_USERNAME"),
+          pass: env("SMTP_PASSWORD"),
+        },
+        tls: {
+          ciphers: "SSLv3",
+          rejectUnauthorized: false,
+        },
       },
-      tls: {
-        ciphers: "SSLv3",
-        rejectUnauthorized: false,
+      settings: {
+        defaultFrom: env("SMTP_DEFAULT_FROM"),
+        defaultReplyTo: env("SMTP_DEFAULT_REPLY_TO"),
       },
-    },
-    settings: {
-      defaultFrom: `"Landus Team" <cde-noreply@landuscooperative.onmicrosoft.com>`,
-      defaultReplyTo: "NoReply@landus.ag",
     },
   },
-},
 
-
-   'scholarship-export': {
+  "scholarship-export": {
     enabled: true,
-    resolve: './src/plugins/scholarship-export',
+    resolve: "./src/plugins/scholarship-export",
   },
 });
