@@ -210,6 +210,7 @@ export default factories.createCoreController(
         to: email,
         from: fromAddress,
               subject: "Your Scholarship Application Was Received",
+              text: `Thank you, ${firstName}! Your scholarship application was received.\n\nName: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone}`,
               html: `
 <table width="100%" cellpadding="0" cellspacing="0" style="background:#f2f2f2; padding:20px; font-family: Arial;">
   <tr>
