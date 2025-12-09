@@ -38,8 +38,9 @@ module.exports = {
       const COLLECTION_UID =
         "api::scholarship-application.scholarship-application";
 
+      // Prefer configured server.url, then STRAPI_URL env, then localhost
       const baseUrl =
-        strapi.config.get("server.url") || "http://localhost:1337";
+        strapi.config.get("server.url") || process.env.STRAPI_URL || "http://localhost:1337";
 
       // 🔥 Fetch ALL entries (100, 500, 5000, unlimited...)
       const entries = await fetchAllDocuments(COLLECTION_UID);
@@ -83,15 +84,20 @@ module.exports = {
         };
       });
 
+      // Helper to build absolute URLs for files
+      const toAbsoluteUrl = (file) => {
+        if (!file || !file.url) return "";
+        const url = file.url;
+        if (typeof url === "string" && url.startsWith("http")) {
+          return url; // already absolute (Strapi Cloud)
+        }
+        return `${baseUrl}${url}`; // local/uploads
+      };
+
       // Add rows
       entries.forEach((item) => {
-        const applicationUrl = item.applicationFile?.url
-          ? `${baseUrl}${item.applicationFile.url}`
-          : "";
-
-        const referenceUrl = item.referenceLetter?.url
-          ? `${baseUrl}${item.referenceLetter.url}`
-          : "";
+        const applicationUrl = toAbsoluteUrl(item.applicationFile);
+        const referenceUrl = toAbsoluteUrl(item.referenceLetter);
 
         const dataRow = sheet.addRow([
           item.id,
