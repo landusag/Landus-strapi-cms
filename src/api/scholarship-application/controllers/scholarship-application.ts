@@ -56,17 +56,37 @@ export default factories.createCoreController(
           .map((e) => e.trim())
           .filter(Boolean);
 
+        // Cloud Mailer requires a plain email address in `from`
+        const rawFrom = process.env.EMAIL_FROM || "no-reply@landuscooperative.com";
+        const fromAddressMatch = rawFrom.match(/<([^>]+)>/);
+        const fromAddress = fromAddressMatch ? fromAddressMatch[1] : rawFrom;
+
+        // Prepare attachments as buffers for better compatibility with Cloud Mailer
+        async function fetchAttachment(url: string | null, fallbackName: string) {
+          if (!url) return null;
+          try {
+            const res = await fetch(url);
+            if (!res.ok) throw new Error(`Failed to fetch attachment: ${res.status}`);
+            const arrayBuffer = await res.arrayBuffer();
+            return { filename: fallbackName, content: Buffer.from(arrayBuffer) } as any;
+          } catch (e) {
+            console.warn("⚠️ Attachment fetch failed:", url, e);
+            return null;
+          }
+        }
+
         // ---------------------- Admin Email HTML ----------------------
         // Strapi v4 email service
         if (adminEmails.length) {
+          const appAttachment = await fetchAttachment(appFileUrl, "Application.pdf");
+          const refAttachment = await fetchAttachment(refFileUrl, "ReferenceLetter.pdf");
+
           await strapi
             .plugin("email")
             .service("email")
             .send({
             to: adminEmails,
-            from:
-              process.env.EMAIL_FROM ||
-              "no-reply@landuscooperative.com",
+            from: fromAddress,
             subject: "New Scholarship Application Received",
             html: `
 <div style="margin:0;padding:0;background:#F5F5F5;width:100%;font-family:Arial,Helvetica,sans-serif;">
@@ -171,13 +191,7 @@ export default factories.createCoreController(
 </div>
 
 `,
-            attachments: [
-              appFileUrl && { filename: "Application.pdf", path: appFileUrl },
-              refFileUrl && {
-                filename: "ReferenceLetter.pdf",
-                path: refFileUrl,
-              },
-            ].filter(Boolean),
+            attachments: [appAttachment, refAttachment].filter(Boolean),
           });
           console.log("✅ Admin email queued to:", adminEmails);
         } else {
@@ -188,14 +202,12 @@ export default factories.createCoreController(
 
         // ---------------------- Confirmation Email ----------------------
         if (email) {
-          await strapi
+      await strapi
             .plugin("email")
             .service("email")
             .send({
-              to: email,
-              from:
-                process.env.EMAIL_FROM ||
-                "no-reply@landuscooperative.com",
+        to: email,
+        from: fromAddress,
               subject: "Your Scholarship Application Was Received",
               html: `
 <table width="100%" cellpadding="0" cellspacing="0" style="background:#f2f2f2; padding:20px; font-family: Arial;">
@@ -220,10 +232,10 @@ export default factories.createCoreController(
 </table>
 `,
             });
-          console.log("✅ Confirmation email queued to:", email);
+          console.log(" Confirmation email queued to:", email);
         }
       } catch (err) {
-        console.error("❌ Email sending error:", err);
+        console.error(" Email sending error:", err);
       }
 
       return response;
