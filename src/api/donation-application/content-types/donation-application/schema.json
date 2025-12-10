@@ -1,0 +1,117 @@
+{
+  "kind": "collectionType",
+  "collectionName": "donation_applications",
+  "info": {
+    "singularName": "donation-application",
+    "pluralName": "donation-applications",
+    "displayName": "DonationApplication"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "groupOrOrganizationApplying": {
+      "type": "string",
+      "required": true
+    },
+    "contactPerson": {
+      "type": "string",
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "addressLine1": {
+      "type": "string",
+      "required": true
+    },
+    "addressLine2": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string",
+      "required": true
+    },
+    "state": {
+      "type": "string",
+      "required": true
+    },
+    "zipCode": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": false
+    },
+    "phoneNumber": {
+      "type": "string",
+      "required": true
+    },
+    "federalTaxIdNumber": {
+      "type": "string"
+    },
+    "geographicAreaServed": {
+      "type": "string"
+    },
+    "groupOrOrganizationCategory": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "County 4-H",
+        "County Fair Board",
+        "FFA Program",
+        "Fire/EMT",
+        "Other"
+      ]
+    },
+    "other": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "groupOrOrganizationCategory"
+            },
+            "Other"
+          ]
+        }
+      }
+    },
+    "dollarAmountRequested": {
+      "type": "string"
+    },
+    "dateNeeded": {
+      "type": "date"
+    },
+    "summaryOfUse": {
+      "type": "text",
+      "required": true
+    },
+    "supportingDocuments": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "additionalSupportingDocuments": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "internalUseonlyLandusRepresentativeSubmittingForm": {
+      "type": "string"
+    }
+  }
+}

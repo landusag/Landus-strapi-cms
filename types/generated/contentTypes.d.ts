@@ -574,6 +574,62 @@ export interface ApiContactPageContactPage extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiDonationApplicationDonationApplication
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'donation_applications';
+  info: {
+    displayName: 'DonationApplication';
+    pluralName: 'donation-applications';
+    singularName: 'donation-application';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    additionalSupportingDocuments: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    addressLine1: Schema.Attribute.String & Schema.Attribute.Required;
+    addressLine2: Schema.Attribute.String;
+    city: Schema.Attribute.String & Schema.Attribute.Required;
+    contactPerson: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    dateNeeded: Schema.Attribute.Date;
+    dollarAmountRequested: Schema.Attribute.String;
+    email: Schema.Attribute.Email;
+    federalTaxIdNumber: Schema.Attribute.String;
+    geographicAreaServed: Schema.Attribute.String;
+    groupOrOrganizationApplying: Schema.Attribute.String &
+      Schema.Attribute.Required;
+    groupOrOrganizationCategory: Schema.Attribute.Enumeration<
+      ['County 4-H', 'County Fair Board', 'FFA Program', 'Fire/EMT', 'Other']
+    > &
+      Schema.Attribute.Required;
+    internalUseonlyLandusRepresentativeSubmittingForm: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::donation-application.donation-application'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String & Schema.Attribute.Required;
+    other: Schema.Attribute.String;
+    phoneNumber: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    state: Schema.Attribute.String & Schema.Attribute.Required;
+    summaryOfUse: Schema.Attribute.Text & Schema.Attribute.Required;
+    supportingDocuments: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    zipCode: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface ApiFooterFooter extends Struct.SingleTypeSchema {
   collectionName: 'footers';
   info: {
@@ -636,44 +692,6 @@ export interface ApiHeaderHeader extends Struct.SingleTypeSchema {
     quickLinks: Schema.Attribute.Component<'shared.link', true>;
     rightCtas: Schema.Attribute.Component<'navigation.link', true>;
     TopBar: Schema.Attribute.Component<'navigation.top-bar', false>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiHomeHome extends Struct.SingleTypeSchema {
-  collectionName: 'homes';
-  info: {
-    displayName: 'Home';
-    pluralName: 'homes';
-    singularName: 'home';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.String;
-    home: Schema.Attribute.DynamicZone<
-      [
-        'sections.hero-section',
-        'sections.quick-facts-section',
-        'sections.media-teaser-section',
-        'sections.difference-section',
-        'sections.content-hub-section',
-        'sections.card-section',
-        'sections.career-section',
-      ]
-    >;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::home.home'> &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    seo: Schema.Attribute.Component<'shared.seo', false>;
-    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1570,9 +1588,9 @@ declare module '@strapi/strapi' {
       'api::categories-page.categories-page': ApiCategoriesPageCategoriesPage;
       'api::category.category': ApiCategoryCategory;
       'api::contact-page.contact-page': ApiContactPageContactPage;
+      'api::donation-application.donation-application': ApiDonationApplicationDonationApplication;
       'api::footer.footer': ApiFooterFooter;
       'api::header.header': ApiHeaderHeader;
-      'api::home.home': ApiHomeHome;
       'api::location-page.location-page': ApiLocationPageLocationPage;
       'api::location.location': ApiLocationLocation;
       'api::page.page': ApiPagePage;
