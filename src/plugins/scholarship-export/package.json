@@ -1,0 +1,10 @@
+{
+  "name": "scholarship-export",
+  "version": "1.0.0",
+  "strapi": {
+    "name": "scholarship-export",
+    "description": "Export button plugin for Scholarship collection",
+    "kind": "plugin"
+  },
+  "main": "strapi-server.js"
+}
