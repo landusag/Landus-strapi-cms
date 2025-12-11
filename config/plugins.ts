@@ -43,4 +43,9 @@ module.exports = ({ env }) => ({
     enabled: true,
     resolve: "./src/plugins/scholarship-export",
   },
+
+  "donation-export": {
+    enabled: true,
+    resolve: "./src/plugins/donation-export",
+  },
 });

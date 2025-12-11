@@ -1,0 +1,10 @@
+{
+  "name": "donation-export",
+  "version": "1.0.0",
+  "strapi": {
+    "name": "donation-export",
+    "description": "Export button plugin for Donation collection",
+    "kind": "plugin"
+  },
+  "main": "strapi-server.js"
+}
