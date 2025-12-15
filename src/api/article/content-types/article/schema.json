@@ -108,12 +108,6 @@
       },
       "component": "shared.link",
       "repeatable": false
-    },
-    "search_text": {
-      "type": "text",
-      "config": {
-        "hidden": true
-      }
     }
   }
 }
