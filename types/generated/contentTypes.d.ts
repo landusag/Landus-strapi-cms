@@ -447,7 +447,6 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     previewUrl: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    search_text: Schema.Attribute.Text;
     slug: Schema.Attribute.UID<'title'>;
     startDateTime: Schema.Attribute.DateTime;
     subHeading: Schema.Attribute.String;
@@ -813,7 +812,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     search_text: Schema.Attribute.Text;
     section: Schema.Attribute.Relation<'manyToOne', 'api::section.section'>;
     seo: Schema.Attribute.Component<'shared.seo', false>;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
