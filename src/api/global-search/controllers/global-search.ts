@@ -72,7 +72,7 @@ const CONTENT_TYPES: any[] = [
   {
     uid: "api::article.article",
     type: "article",
-    fields: ["title", "heading", "subHeading", "search_text"],
+  fields: ["title", "heading", "subHeading"],
     populate: { category: true, coverImage: true },
     url: (entry: any) => entry.previewUrl || `/news/${entry.slug}`,
   },
@@ -145,51 +145,63 @@ export default {
 
       const aggregated: any[] = [];
       for (const cfg of CONTENT_TYPES) {
+        // Guard: skip if model UID doesn't exist in Strapi (prevents getModel undefined errors)
+        const hasModel = !!(strapi?.getModel?.(cfg.uid) || strapi?.contentTypes?.[cfg.uid]);
+        if (!hasModel) {
+          // silently skip unknown/disabled content types
+          continue;
+        }
         let items;
-        if (cfg.singleType) {
-          // Single type: fetch one
-          const entry = await strapi.entityService.findMany(cfg.uid, { populate: cfg.populate });
-          items = entry ? [entry] : [];
-        } else {
-          const orFilters: any[] = [];
-          for (const field of cfg.fields) {
-            for (const token of tokens) {
-              orFilters.push({ [field]: { $containsi: token } });
+        try {
+          if (cfg.singleType) {
+            // Single type: fetch one
+            const entry = await strapi.entityService.findMany(cfg.uid, { populate: cfg.populate });
+            items = entry ? [entry] : [];
+          } else {
+            const orFilters: any[] = [];
+            for (const field of cfg.fields) {
+              for (const token of tokens) {
+                orFilters.push({ [field]: { $containsi: token } });
+              }
             }
-          }
-          // Debug disabled: uncomment if needed
-          // console.log('Search filters', cfg.uid, JSON.stringify(orFilters));
-          try {
-            items = await strapi.entityService.findMany(cfg.uid, {
-              filters: { $or: orFilters },
-              populate: cfg.populate,
-              limit: 100,
-            });
-          } catch (e: any) {
-            if (e?.details?.key === "content") {
-              // Retry without filters (still populate basics)
+            // Debug disabled: uncomment if needed
+            // console.log('Search filters', cfg.uid, JSON.stringify(orFilters));
+            try {
               items = await strapi.entityService.findMany(cfg.uid, {
+                filters: { $or: orFilters },
                 populate: cfg.populate,
                 limit: 100,
               });
-            } else {
-              throw e;
+            } catch (e: any) {
+              if (e?.details?.key === "content") {
+                // Retry without filters (still populate basics)
+                items = await strapi.entityService.findMany(cfg.uid, {
+                  populate: cfg.populate,
+                  limit: 100,
+                });
+              } else {
+                throw e;
+              }
+            }
+            // Fallback: if pages came back empty try unfiltered fetch (for stale search_text)
+            if (cfg.type === "page" && items.length === 0) {
+              items = await strapi.entityService.findMany(cfg.uid, {
+                populate: cfg.populate,
+                limit: 200,
+              });
+            }
+            // Article fallback if empty
+            if (cfg.type === "article" && items.length === 0) {
+              items = await strapi.entityService.findMany(cfg.uid, {
+                populate: cfg.populate,
+                limit: 150,
+              });
             }
           }
-          // Fallback: if pages came back empty try unfiltered fetch (for stale search_text)
-          if (cfg.type === "page" && items.length === 0) {
-            items = await strapi.entityService.findMany(cfg.uid, {
-              populate: cfg.populate,
-              limit: 200,
-            });
-          }
-          // Article fallback if empty
-          if (cfg.type === "article" && items.length === 0) {
-            items = await strapi.entityService.findMany(cfg.uid, {
-              populate: cfg.populate,
-              limit: 150,
-            });
-          }
+        } catch (e) {
+          // If a specific model errors, skip it to keep global search responsive
+          // console.error("Global search model error for", cfg.uid, e);
+          continue;
         }
 
   // ---- Main search logic for each entry ----
@@ -197,7 +209,8 @@ export default {
           let displayTitle = entry?.seo?.metaTitle || entry.title;
           if (cfg.type === "product") displayTitle = entry.title;
           let searchTextRaw = "";
-          if (cfg.type === "article" || cfg.type === "page") {
+          if (cfg.type === "page") {
+            // pages may still have a derived search text; if removed, keep empty
             searchTextRaw = entry.search_text || "";
           }
           let deepParts = [];
@@ -243,9 +256,8 @@ export default {
           if (cfg.type === "location-page" && entry.title) baseTextArr.push(entry.title);
           const baseText = baseTextArr.filter(Boolean).join(" ");
           const combined = normalize(baseText);
-          // Split normalized base text into words for strict word matching
-          const baseWords = new Set(combined.split(/\s+/));
-          let matched = tokens.filter((t) => baseWords.has(t));
+          // Use substring matching to allow prefix queries (e.g., 'compre' matches 'comprehensive')
+          let matched = tokens.filter((t) => combined.includes(t));
           if (requireAll && matched.length !== tokens.length) continue;
           if (!matched.length) continue;
 
@@ -279,7 +291,7 @@ export default {
             }
             snippetSource = snippet(baseText, chosen);
           }
-          // Fallback: if snippetSource still empty and search_text has phrase
+          // Fallback: if snippetSource still empty and search_text has phrase (pages only)
           if (!snippetSource && searchTextRaw)
             snippetSource = snippet(searchTextRaw, matched[0]);
           aggregated.push({
