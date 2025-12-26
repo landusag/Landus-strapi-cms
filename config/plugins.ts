@@ -1,7 +1,4 @@
 module.exports = ({ env }) => ({
-  redirect: {
-    enabled: true
-  },
   graphql: {
     config: {
       defaultLimit: 100,
