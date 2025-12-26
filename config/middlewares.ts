@@ -12,7 +12,7 @@ export default [
   {
     name: "global::permanent-redirect",
     config: {
-      map: [
+      rules: [
         //{ from: "/old-slug", to: "/new-slug" },
         { from: "/events", to: "/company/events" },
         // Add as many as you need
