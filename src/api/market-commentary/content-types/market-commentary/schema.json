@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "market_commentaries",
+  "info": {
+    "singularName": "market-commentary",
+    "pluralName": "market-commentaries",
+    "displayName": "Market Commentary"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "postDate": {
+      "type": "date"
+    },
+    "shortOverview": {
+      "type": "string"
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "content": {
+      "type": "blocks"
+    }
+  }
+}

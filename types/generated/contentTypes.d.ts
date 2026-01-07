@@ -629,6 +629,39 @@ export interface ApiDonationApplicationDonationApplication
   };
 }
 
+export interface ApiEnergyCommentaryEnergyCommentary
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'energy_commentaries';
+  info: {
+    displayName: 'Energy Commentary';
+    pluralName: 'energy-commentaries';
+    singularName: 'energy-commentary';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::energy-commentary.energy-commentary'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    postDate: Schema.Attribute.Date;
+    publishedAt: Schema.Attribute.DateTime;
+    shortOverview: Schema.Attribute.String;
+    thumbnail: Schema.Attribute.Media<'images' | 'files'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiFooterFooter extends Struct.SingleTypeSchema {
   collectionName: 'footers';
   info: {
@@ -756,6 +789,39 @@ export interface ApiLocationLocation extends Struct.CollectionTypeSchema {
     phone: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     services: Schema.Attribute.Relation<'manyToMany', 'api::service.service'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMarketCommentaryMarketCommentary
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'market_commentaries';
+  info: {
+    displayName: 'Market Commentary';
+    pluralName: 'market-commentaries';
+    singularName: 'market-commentary';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::market-commentary.market-commentary'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    postDate: Schema.Attribute.Date;
+    publishedAt: Schema.Attribute.DateTime;
+    shortOverview: Schema.Attribute.String;
+    thumbnail: Schema.Attribute.Media<'images' | 'files'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1588,10 +1654,12 @@ declare module '@strapi/strapi' {
       'api::category.category': ApiCategoryCategory;
       'api::contact-page.contact-page': ApiContactPageContactPage;
       'api::donation-application.donation-application': ApiDonationApplicationDonationApplication;
+      'api::energy-commentary.energy-commentary': ApiEnergyCommentaryEnergyCommentary;
       'api::footer.footer': ApiFooterFooter;
       'api::header.header': ApiHeaderHeader;
       'api::location-page.location-page': ApiLocationPageLocationPage;
       'api::location.location': ApiLocationLocation;
+      'api::market-commentary.market-commentary': ApiMarketCommentaryMarketCommentary;
       'api::page.page': ApiPagePage;
       'api::product.product': ApiProductProduct;
       'api::scholarship-application-page.scholarship-application-page': ApiScholarshipApplicationPageScholarshipApplicationPage;
