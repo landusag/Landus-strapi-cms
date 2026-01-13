@@ -447,6 +447,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     previewUrl: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    shortOverview: Schema.Attribute.Text;
     slug: Schema.Attribute.UID<'title'>;
     startDateTime: Schema.Attribute.DateTime;
     subHeading: Schema.Attribute.String;

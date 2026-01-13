@@ -108,6 +108,9 @@
       },
       "component": "shared.link",
       "repeatable": false
+    },
+    "shortOverview": {
+      "type": "text"
     }
   }
 }
