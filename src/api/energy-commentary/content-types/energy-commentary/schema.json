@@ -16,7 +16,7 @@
       "required": true
     },
     "postDate": {
-      "type": "date"
+      "type": "datetime"
     },
     "shortOverview": {
       "type": "string"
