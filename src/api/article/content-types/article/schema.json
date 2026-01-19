@@ -36,7 +36,7 @@
       "inversedBy": "articles"
     },
     "Date": {
-      "type": "date",
+      "type": "datetime",
       "conditions": {
         "visible": {
           "!=": [
