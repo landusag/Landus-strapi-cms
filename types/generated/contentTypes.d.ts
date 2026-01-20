@@ -435,7 +435,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Date: Schema.Attribute.Date;
+    Date: Schema.Attribute.DateTime;
     endDateTime: Schema.Attribute.DateTime;
     heading: Schema.Attribute.String;
     link: Schema.Attribute.Component<'shared.link', false>;
@@ -451,7 +451,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     slug: Schema.Attribute.UID<'title'>;
     startDateTime: Schema.Attribute.DateTime;
     subHeading: Schema.Attribute.String;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -653,7 +653,7 @@ export interface ApiEnergyCommentaryEnergyCommentary
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String & Schema.Attribute.Required;
-    postDate: Schema.Attribute.Date;
+    postDate: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
     shortOverview: Schema.Attribute.String;
     thumbnail: Schema.Attribute.Media<'images' | 'files'>;
@@ -819,7 +819,7 @@ export interface ApiMarketCommentaryMarketCommentary
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String & Schema.Attribute.Required;
-    postDate: Schema.Attribute.Date;
+    postDate: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
     shortOverview: Schema.Attribute.String;
     thumbnail: Schema.Attribute.Media<'images' | 'files'>;
