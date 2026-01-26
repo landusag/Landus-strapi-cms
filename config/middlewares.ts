@@ -8,5 +8,18 @@ export default [
   'strapi::body',
   'strapi::session',
   'strapi::favicon',
-  'strapi::public'
+  'strapi::public',
+  {
+    name: "global::permanent-redirect",
+    config: {
+      rules: [
+        //{ from: "/old-slug", to: "/new-slug" },
+        { from: "/events", to: "/company/events" },
+        //{ from: "/skyscout", to: "innovation/technologies/skyscout" },
+        { from: "/acreedge", to: "/businesses/agronomy/acreedge" },
+        // Add as many as you need
+      ],
+    },
+  }
 ];
+
