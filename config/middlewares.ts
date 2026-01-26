@@ -8,7 +8,6 @@ export default [
   'strapi::body',
   'strapi::session',
   'strapi::favicon',
-  'strapi::public',
   {
     name: "global::permanent-redirect",
     config: {
@@ -19,6 +18,7 @@ export default [
         // Add as many as you need
       ],
     },
-  }
+  },
+  'strapi::public',
 ];
 
