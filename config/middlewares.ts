@@ -15,7 +15,7 @@ export default [
       rules: [
         //{ from: "/old-slug", to: "/new-slug" },
         { from: "/events", to: "/company/events" },
-        { from: "/skyscout", to: "innovation/technologies/skyscout" },
+        { from: "/skyscout", to: "/innovation/technologies/skyscout" },
         // Add as many as you need
       ],
     },
