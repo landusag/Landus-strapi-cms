@@ -9,17 +9,5 @@ export default [
   'strapi::session',
   'strapi::favicon',
   'strapi::public',
-  {
-    name: "global::permanent-redirect",
-    config: {
-      rules: [
-        //{ from: "/old-slug", to: "/new-slug" },
-        { from: "/events", to: "/company/events" },
-        { from: "/skyscout", to: "/innovation/technologies/skyscout" },
-        // Add as many as you need
-    ],
-    },
-  },
-  'strapi::public',
 ];
 
