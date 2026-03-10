@@ -25,9 +25,9 @@ steps:
     BRANCH_NAME="$(Build.SourceBranchName)"   # e.g., develop/stage/main or a feature
     echo "Detected branch: ${BRANCH_NAME}"
 
-    # Only sync develop/main
+    # Only sync develop/stage/main
     case "$BRANCH_NAME" in
-      develop|main) echo "Allowed branch, proceeding…";;
+      develop|stage|main) echo "Allowed branch, proceeding…";;
       *)
         echo "Branch ${BRANCH_NAME} is not in {develop,stage,main}. Skipping sync."; exit 0;;
     esac
@@ -44,7 +44,7 @@ steps:
 
     # Optional: push tags
     # git push github --tags
-  displayName: "Sync develop/main → GitHub"
+  displayName: "Sync develop/stage/main → GitHub"
   env:
     GITHUB_PAT: $(GITHUB_PAT)
   condition: ne(variables['Build.Reason'], 'PullRequest')
