@@ -7,7 +7,6 @@ trigger:
   branches:
     include:
       - develop
-      - stage
       - main
 
 pr: none
@@ -22,14 +21,14 @@ steps:
 - bash: |
     set -euo pipefail
 
-    BRANCH_NAME="$(Build.SourceBranchName)"   # e.g., develop/stage/main or a feature
+    BRANCH_NAME="$(Build.SourceBranchName)"   # e.g., develop/main or a feature
     echo "Detected branch: ${BRANCH_NAME}"
 
-    # Only sync develop/stage/main
+    # Only sync develop/main
     case "$BRANCH_NAME" in
-      develop|stage|main) echo "Allowed branch, proceeding…";;
+      develop|main) echo "Allowed branch, proceeding…";;
       *)
-        echo "Branch ${BRANCH_NAME} is not in {develop,stage,main}. Skipping sync."; exit 0;;
+        echo "Branch ${BRANCH_NAME} is not in {develop,main}. Skipping sync."; exit 0;;
     esac
 
     git config user.name  "Azure DevOps Sync Bot"
@@ -44,7 +43,7 @@ steps:
 
     # Optional: push tags
     # git push github --tags
-  displayName: "Sync develop/stage/main → GitHub"
+  displayName: "Sync develop/main → GitHub"
   env:
     GITHUB_PAT: $(GITHUB_PAT)
   condition: ne(variables['Build.Reason'], 'PullRequest')
