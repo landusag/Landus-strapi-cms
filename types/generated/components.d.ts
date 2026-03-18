@@ -597,7 +597,8 @@ export interface SharedButton extends Struct.ComponentSchema {
     isShowArrow: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     target: Schema.Attribute.Enumeration<['_blank', '_self']>;
     text: Schema.Attribute.String;
-    URL: Schema.Attribute.String;
+    URL: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'https://stageportal.landus.ag'>;
     variant: Schema.Attribute.Enumeration<
       ['simple', 'primary', 'outline', 'muted']
     > &

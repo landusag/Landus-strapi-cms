@@ -9,7 +9,8 @@
       "type": "string"
     },
     "URL": {
-      "type": "string"
+      "type": "string",
+      "default": "https://stageportal.landus.ag"
     },
     "target": {
       "type": "enumeration",
