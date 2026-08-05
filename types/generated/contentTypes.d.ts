@@ -751,6 +751,7 @@ export interface ApiLocationLocation extends Struct.CollectionTypeSchema {
       'api::location.location'
     > &
       Schema.Attribute.Private;
+    locationManager: Schema.Attribute.Text;
     longitude: Schema.Attribute.String;
     name: Schema.Attribute.String;
     phone: Schema.Attribute.String;
