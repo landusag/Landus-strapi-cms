@@ -34,6 +34,9 @@
     },
     "longitude": {
       "type": "string"
+    },
+    "locationManager": {
+      "type": "text"
     }
   }
 }

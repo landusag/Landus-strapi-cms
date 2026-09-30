@@ -74,7 +74,8 @@ module.exports = {
         "Dollar Amount Requested",
         "Supporting Documents",
         "Additional Supporting Documents",
-        "Internal Use only: Landus Representative Submitting Form"
+        "Internal Use only: Landus Representative Submitting Form",
+        "Date Of Submission"
 
       ];
 
@@ -132,6 +133,8 @@ module.exports = {
           supportingDocumentsUrl,
           additionalSupportingDocumentsUrl,
           item.internalUseonlyLandusRepresentativeSubmittingForm || "",
+          item.dateofsubmission || "",
+
         ]);
 
         dataRow.height = 22; // set row height for each data row
