@@ -51,10 +51,15 @@
       "required": true
     },
     "federalTaxIdNumber": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "geographicAreaServed": {
       "type": "string"
+    },
+    "dateofsubmission": {
+      "type": "date",
+      "required": true
     },
     "groupOrOrganizationCategory": {
       "type": "enumeration",
