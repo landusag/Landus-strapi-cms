@@ -15,11 +15,11 @@
     "upgrade:dry": "npx @strapi/upgrade latest --dry"
   },
   "dependencies": {
-    "@strapi/plugin-cloud": "5.23.3",
-    "@strapi/plugin-graphql": "^5.23.3",
-    "@strapi/plugin-users-permissions": "5.23.3",
-    "@strapi/provider-email-nodemailer": "^5.31.3",
-    "@strapi/strapi": "5.23.3",
+    "@strapi/plugin-cloud": "5.56.0",
+    "@strapi/plugin-graphql": "5.56.0",
+    "@strapi/plugin-users-permissions": "5.56.0",
+    "@strapi/provider-email-nodemailer": "5.56.0",
+    "@strapi/strapi": "5.56.0",
     "better-sqlite3": "11.3.0",
     "csv-stringify": "^6.6.0",
     "exceljs": "^4.4.0",
@@ -42,5 +42,8 @@
   "strapi": {
     "uuid": "453c2898-a9c5-4917-9969-3557d132e6e1",
     "installId": "aaefa324d8a169704d2a71edfa8215101f56851a92abc8625bc16c69f7242a96"
+  },
+  "overrides": {
+    "handlebars": "4.7.10"
   }
 }
